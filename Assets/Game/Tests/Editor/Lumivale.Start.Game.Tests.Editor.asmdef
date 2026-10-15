@@ -1,0 +1,23 @@
+{
+    "name": "Lumivale.Start.Game.Tests.Editor",
+    "references": [
+        "Lumivale.Start.Game",
+        "Lumivale.Core.Bootstrap",
+        "Lumivale.Core.SceneFlow",
+        "Lumivale.Core.Input",
+        "Lumivale.Core.UI",
+        "Lumivale.Core.Settings",
+        "Lumivale.Core.Audio",
+        "Lumivale.Core.Persistence",
+        "Unity.InputSystem",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "autoReferenced": false
+}

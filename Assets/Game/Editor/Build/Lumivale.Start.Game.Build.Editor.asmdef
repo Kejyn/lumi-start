@@ -1,0 +1,12 @@
+{
+    "name": "Lumivale.Start.Game.Build.Editor",
+    "rootNamespace": "Lumivale.Start.Game.Editor",
+    "references": [
+        "Lumivale.Start.Game",
+        "Unity.Pipeline"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": false
+}

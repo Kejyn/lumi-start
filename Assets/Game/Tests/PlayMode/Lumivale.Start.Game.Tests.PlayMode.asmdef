@@ -1,0 +1,21 @@
+{
+    "name": "Lumivale.Start.Game.Tests.PlayMode",
+    "references": [
+        "Lumivale.Start.Game",
+        "Lumivale.Core.Bootstrap",
+        "Lumivale.Core.SceneFlow",
+        "Lumivale.Core.Input",
+        "Lumivale.Core.UI",
+        "Lumivale.Core.Settings",
+        "Lumivale.Core.Audio",
+        "Lumivale.Core.Persistence",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "autoReferenced": false
+}

@@ -1,0 +1,64 @@
+# Generated Unity state; Assets, Packages and ProjectSettings remain tracked.
+/[Ll]ibrary/
+/[Tt]emp/
+/[Ll]ogs/
+/[Oo]bj/
+/[Bb]in/
+/[Bb]uild/
+/[Bb]uilds/
+/[Uu]ser[Ss]ettings/
+/[Aa]rtifacts/
+/MemoryCaptures/
+/Recordings/
+/.vs/
+/.idea/
+
+# Generated IDE files and local state, never .meta/asmdef/package manifests.
+/*.csproj
+/*.sln
+/*.slnx
+/*.unityproj
+/*.pidb
+/*.booproj
+/*.suo
+/*.user
+/*.userprefs
+/*.opendb
+/*.VC.db
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Historical validation evidence is archived outside this repository.
+# New build reports belong under the ignored Builds/Reports directory.
+
+# Local agent state, environment credentials and Pipeline runtime authentication.
+/.codex/
+/.agents/
+/.claude/
+/.mcp.json
+/.env
+/.env.*
+!/.env.example
+/ProjectSettings/Packages/com.unity.pipeline/RuntimePipelineConfig.json
+
+# Local backups, test evidence and player data are not project source.
+/Backups/
+/Archive/
+/Validation/
+/LumiSaves/
+/Saves/
+/SaveData/
+/PlayerPrefs/
+
+# Private signing material and authentication keys.
+*.pfx
+*.p12
+*.keystore
+*.jks
+*.pem
+*.key
+id_rsa
+id_ed25519

@@ -1,0 +1,22 @@
+# Lumi Start contributor instructions
+
+- Target Unity 6000.3.13f1 and preserve the installed package versions and URP configuration unless a requirement explicitly changes them.
+- Active assets and composition belong to Assets/Game. Its runtime assembly and namespace are Lumivale.Start.Game; organize Bootstrap, Gameplay, Menu, UI, Save and Configuration responsibilities there.
+- Game depends on lumi-core and installed Unity packages. Do not copy Core runtime code into Assets or introduce a dependency on historical examples or asset generators.
+- Preserve the approved UI, animations and navigation unless a task explicitly authorizes their modification. Edit existing assets in Unity; do not regenerate GameCanvas as a cleanup step.
+- Commercial builds select only Assets/Game/Scenes/GameMenu.unity then Assets/Game/Scenes/GameDemo.unity. ReleaseBuild writes generated reports under ignored Builds/Reports.
+- Use native Unity APIs for scene/asset moves, deletions and reference inspection. Verify compilation and console messages in the connected Editor. Never hand-edit scene or prefab YAML. Keep retained source assets and their .meta files together.
+- Preserve GameBootstrap, GameSceneController, GameSettingsController, GameChoiceButton, GameSettingsAudioBinding, GameSaveController and GameSaveData GUIDs and serialized field names. MovedFrom attributes intentionally retain earlier type identities.
+- Keep Input Actions content and IDs stable during unrelated changes. Reserve Common controls when rebinding Gameplay and persist only Gameplay overrides.
+- Preserve persistence identity lumivale-lumi-start-demo, model starter-cube version 1, fields PositionX/PositionY/PositionZ/Counter, slots demo-1 through demo-3, Settings key com.lumivale.lumi-start.preferences and suffixes .presentation.v1/.bindings.v1. Changing these contracts requires an explicit migration plan.
+- Save DTOs belong to Game/Runtime/Save. Save/Load/Delete use Core Persistence; confirm Delete, cancel precommit work on view closure and suppress obsolete application of loaded state.
+- Compose Settings and Audio in Game. Neither Core module references the other; apply validated volumes before music starts. Preserve mixer, clips and provenance under Assets/Game/Audio.
+- Options edits a draft. Preserve Apply/Back/Reset and confirmation before abandoning changes. Keep graphics application and preference saving explicit.
+- Active integration tests belong to Assets/Game/Tests. Core tests remain in ../lumi-core/Tests and are exposed by the manifest testables entry.
+- Run checks appropriate to the change and report only tests actually executed. Distinguish Editor compilation, virtual-device tests, native Player checks and human hardware/audio validation.
+- Test fixtures own isolated roots, preferences and virtual devices. Restore Editor/graphics settings and build scene lists; await Bootstrap shutdown in repeated Play sessions. Never delete real saves or call PlayerPrefs.DeleteAll to repair a test.
+- Keep required URP, TMP, input, audio, scenes, prefabs and build configuration. Confirm native references before removing an asset. Preserve license notices and attributions.
+- Build outputs and generated reports belong under ignored Builds. Player validation uses a separate Company/Product identity and fixture-owned data. Verify the actual data path before operations that can remove files.
+- Keep installation, architecture, new-game and build/test guides current. Use English for C# comments; preserve useful technical explanations.
+- Preserve existing uncommitted work and independent sibling projects. Make a verified backup before destructive cleanup or history changes; keep backups outside the repositories.
+- Audit current files and complete Git history before publication. Preserve author identities, require explicit approval for history rewriting, keep repositories private unless authorized otherwise, and never force-push without explicit authorization.

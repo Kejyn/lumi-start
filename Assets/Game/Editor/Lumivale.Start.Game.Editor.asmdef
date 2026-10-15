@@ -1,0 +1,17 @@
+{
+    "name": "Lumivale.Start.Game.Editor",
+    "rootNamespace": "Lumivale.Start.Game.Editor",
+    "references": [
+        "Lumivale.Start.Game",
+        "Lumivale.Core.Bootstrap",
+        "Lumivale.Core.Input",
+        "Lumivale.Core.UI",
+        "Unity.InputSystem",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": false
+}
