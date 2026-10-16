@@ -10,6 +10,8 @@ using Lumivale.Start.Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -134,8 +136,12 @@ namespace Lumivale.Start.Game
                     continueRequestedFrame = Time.frameCount;
                 }));
                 host.UI.ScreenClosed += ScreenClosed;
+                LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
                 Wire(true);
                 RefreshControls();
+                // Slot discovery is asynchronous; translate the prefab's initial label
+                // before showing Main Menu while the current save state is still unknown.
+                GameText.Set(views.PrimaryLabel, "menu.new_game");
                 // Selecting the first screen does not depend on disk discovery or a
                 // Scene Flow input lease. Never render the bare background while waiting.
                 host.UI.Open(session.BootDismissed ? "MainMenu" : views.Boot.Id, rememberHistory: false);
@@ -277,7 +283,7 @@ namespace Lumivale.Start.Game
         private void RequestQuit()
         {
             if (!CanInteract || busy || host.UI.CurrentScreenId != "MainMenu") return;
-            if (views.QuitStatus != null) views.QuitStatus.text = string.Empty;
+            if (views.QuitStatus != null) GameText.Set(views.QuitStatus, string.Empty);
             host.UI.OpenModal(views.ConfirmQuit.Id);
         }
 
@@ -296,6 +302,9 @@ namespace Lumivale.Start.Game
         {
             busy = true;
             RefreshControls();
+            // UI shutdown closes its screens before the process actually exits. Keep the
+            // whole presentation hidden, including Canvas children outside any UiScreen.
+            if (presentationCanvas != null) presentationCanvas.enabled = false;
             try
             {
                 try { await host.ShutdownAsync(); }
@@ -303,7 +312,7 @@ namespace Lumivale.Start.Game
                 {
                     // The coordinator has attempted all service stops. A failed service must
                     // not leave a deliberately exiting application stranded with dead input.
-                    ReportQuitFailure("Cleanup reported an error: " + exception.Message, exception);
+                    ReportQuitFailure("menu.quit.cleanup_failed", exception, showConfirmation: false);
                 }
                 QuitConfirmed = true;
                 if (QuitRequested != null) await QuitRequested();
@@ -317,20 +326,41 @@ namespace Lumivale.Start.Game
             }
             catch (Exception exception)
             {
-                ReportQuitFailure("Unable to exit: " + exception.Message, exception);
+                ReportQuitFailure("menu.quit.failed", exception);
             }
             finally { if (this != null) { busy = false; RefreshControls(); } }
         }
 
-        private void ReportQuitFailure(string message, Exception exception)
+        private void ReportQuitFailure(string messageKey, Exception exception, bool showConfirmation = true)
         {
-            if (this != null && views.QuitStatus != null)
+            if (this != null && views?.ConfirmQuit != null)
             {
-                views.QuitStatus.text = message;
-                // UI shutdown has already hidden its registered screens. Preserve a visible
-                // diagnostic when the final exit callback itself fails.
-                CanvasGroup group = views.ConfirmQuit.CanvasGroup;
-                if (group != null) group.alpha = 1f;
+                if (views.QuitStatus != null) GameText.Set(views.QuitStatus, messageKey);
+                if (showConfirmation)
+                {
+                    // The coordinator may already be Stopped, so this failure view cannot
+                    // depend on UiService or its input bridge to become readable again.
+                    if (presentationCanvas != null)
+                    {
+                        foreach (UiScreen screen in presentationCanvas.GetComponentsInChildren<UiScreen>(true))
+                        {
+                            CanvasGroup hidden = screen.CanvasGroup;
+                            if (hidden == null) continue;
+                            hidden.alpha = 0f;
+                            hidden.interactable = false;
+                            hidden.blocksRaycasts = false;
+                        }
+                    }
+                    views.ConfirmQuit.transform.SetAsLastSibling();
+                    CanvasGroup group = views.ConfirmQuit.CanvasGroup;
+                    if (group != null)
+                    {
+                        group.alpha = 1f;
+                        group.interactable = false;
+                        group.blocksRaycasts = true;
+                    }
+                    if (presentationCanvas != null) presentationCanvas.enabled = true;
+                }
             }
             Debug.LogException(exception, this);
         }
@@ -384,7 +414,7 @@ namespace Lumivale.Start.Game
             if (!CanInteract || busy || !IsSelectionOpen || host.UI.ModalCount != 0 ||
                 slots[selectedIndex] == null || IsSelectedSlotEmpty) return;
             pendingDeleteSlot = SelectedSlotId;
-            views.DeleteMessage.text = "Delete slot " + (selectedIndex + 1) + "?\nThis cannot be undone.";
+            GameText.Set(views.DeleteMessage, "save.confirm_delete_slot", selectedIndex + 1);
             host.UI.OpenModal(views.DeleteConfirmation.Id);
         }
 
@@ -437,7 +467,8 @@ namespace Lumivale.Start.Game
                 if (IsCurrent(version) && !token.IsCancellationRequested)
                 {
                     LastStatus = PersistenceStatus.StorageError;
-                    views.SaveStatus.text = "Save access failed: " + exception.Message;
+                    GameText.Set(views.SaveStatus, "save.access_failed");
+                    Debug.LogException(exception, this);
                 }
             }
             finally
@@ -484,15 +515,16 @@ namespace Lumivale.Start.Game
             }
             // Unknown storage is never presented as empty, which would invite a destructive new-game assumption.
             HasSaves = Array.Exists(slots, info => info.Status != PersistenceStatus.NotFound);
-            views.PrimaryLabel.text = HasSaves ? "Continue game" : "New game";
-            views.SaveStatus.text = result.IsSuccess ? string.Empty :
-                result.Status + ": " + result.Message;
+            GameText.Set(views.PrimaryLabel, HasSaves ? "menu.continue" : "menu.new_game");
+            if (result.IsSuccess) GameText.Set(views.SaveStatus, string.Empty);
+            else GameText.Set(views.SaveStatus, "save.result." + result.Status);
             RefreshSlotLabels();
             RefreshControls();
         }
 
         private void RefreshSlotLabels()
         {
+            if (!GameText.IsReady) return;
             for (int i = 0; i < 3; i++)
             {
                 SaveSlotInfo info = slots[i];
@@ -503,11 +535,13 @@ namespace Lumivale.Start.Game
                     card.SetSelected(selectedIndex == i);
                     continue;
                 }
-                string label = info == null ? "Checking" : info.Status == PersistenceStatus.NotFound ? "Empty" :
-                    info.Status == PersistenceStatus.Success ? (info.RecoveredFromBackup ? "Recoverable save" : "Saved game") :
-                    info.Status.ToString();
-                string date = info?.Metadata != null ? "\n" + info.Metadata.SavedAtUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm") : "";
-                views.SlotLabels[i].text = (selectedIndex == i ? "> " : "") + "Slot " + (i + 1) + "  /  " + label + date;
+                string stateKey = info == null ? "save.checking" : info.Status == PersistenceStatus.NotFound ? "save.empty" :
+                    info.Status == PersistenceStatus.Success ? (info.RecoveredFromBackup ? "save.recoverable" : "save.saved") :
+                    "persistence.status." + info.Status;
+                string date = info?.Metadata != null ? "\n" + info.Metadata.SavedAtUtc.ToLocalTime().ToString("g",
+                    LocalizationSettings.SelectedLocale?.Identifier.CultureInfo ?? System.Globalization.CultureInfo.InvariantCulture) : "";
+                views.SlotLabels[i].text = (selectedIndex == i ? "> " : "") +
+                    GameText.Text("save.slot_title", i + 1, GameText.Text(stateKey)) + date;
             }
         }
 
@@ -524,7 +558,7 @@ namespace Lumivale.Start.Game
             token.ThrowIfCancellationRequested();
             host.UI.Open(views.SaveSelection.Id);
             FocusSelectedSlot();
-            views.SaveStatus.text = "No empty slot is available. Load a save, or explicitly delete a selected slot.";
+            GameText.Set(views.SaveStatus, "save.no_empty_slots");
         }
 
         private async Task StartEmptyGame(CancellationToken token)
@@ -537,8 +571,7 @@ namespace Lumivale.Start.Game
             {
                 await RefreshSlots(token);
                 LastStatus = exists.IsSuccess ? PersistenceStatus.InvalidData : exists.Status;
-                views.SaveStatus.text = "A new game needs an empty slot. Existing saves are never replaced automatically.\n" +
-                    (exists.IsSuccess ? "The selected slot is occupied." : exists.Status + ": " + exists.Message);
+                GameText.Set(views.SaveStatus, "save.new_game_needs_empty");
                 if (host.UI.CurrentScreenId == "MainMenu")
                 {
                     host.UI.Open(views.SaveSelection.Id);
@@ -559,7 +592,7 @@ namespace Lumivale.Start.Game
             LastStatus = result.Status;
             if (!result.IsSuccess)
             {
-                views.SaveStatus.text = result.Status + ": " + result.Message;
+                GameText.Set(views.SaveStatus, "save.result." + result.Status);
                 return;
             }
             session.PrepareLoadedGame(slotId, result.Data);
@@ -586,8 +619,7 @@ namespace Lumivale.Start.Game
             if (!IsSelectionOpen) return;
             await RefreshSlots(token);
             LastStatus = result.Status;
-            views.SaveStatus.text = result.IsSuccess ? "Slot deleted. A new game can now use this empty slot." :
-                result.Status + ": " + result.Message;
+            GameText.Set(views.SaveStatus, result.IsSuccess ? "save.deleted" : "save.result." + result.Status);
             // Keep the confirmed slot selected even if deleting a different generation changed
             // the visible contextual button and caused EventSystem to clear its selection.
             FocusSelectedSlot();
@@ -639,6 +671,28 @@ namespace Lumivale.Start.Game
             if (id == views.DeleteConfirmation.Id) pendingDeleteSlot = null;
         }
 
+        private void LocaleChanged(Locale locale)
+        {
+            if (!ready || host == null || !host.IsReady) return;
+            RefreshSlotLabels();
+            // Keep the current roll position and speed when the translated content reflows.
+            // LocalizeStringEvent can update its label later in this frame, so measure below.
+            creditsReflowPending = true;
+        }
+
+        private bool creditsReflowPending;
+
+        private void LateUpdate()
+        {
+            if (!creditsReflowPending || views?.CreditsRoll == null) return;
+            creditsReflowPending = false;
+            Canvas.ForceUpdateCanvases();
+            var text = views.CreditsRoll.GetComponent<TMP_Text>();
+            var viewport = views.CreditsRoll.parent as RectTransform;
+            creditsTravel = (viewport != null ? viewport.rect.height : 0f) +
+                (text != null ? text.preferredHeight : views.CreditsRoll.rect.height) + 16f;
+        }
+
         private void Wire(bool wire)
         {
             ButtonListener(views.Primary, Primary, wire);
@@ -688,6 +742,8 @@ namespace Lumivale.Start.Game
         {
             if (presentationCanvas != null) presentationCanvas.enabled = false;
             ready = false;
+            LocalizationSettings.SelectedLocaleChanged -= LocaleChanged;
+            creditsReflowPending = false;
             pendingBack = pendingSlotAction = pendingContinue = pendingRefresh = false;
             busy = false;
             pointerSlotIndex = -1;

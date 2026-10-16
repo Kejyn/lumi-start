@@ -5,12 +5,14 @@ using Lumivale.Core.Settings;
 using Lumivale.Core.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace Lumivale.Start.Game
 {
     /// <summary>Owns the Starter Options draft and view wiring; Core owns validation and persistence.</summary>
     [UnityEngine.Scripting.APIUpdating.MovedFrom(false, sourceNamespace: "Lumivale.Start.Phase2Demo", sourceAssembly: "Lumivale.Start.Phase2Demo", sourceClassName: "Phase3DemoController")]
-    public sealed class GameSettingsController : MonoBehaviour
+    public sealed partial class GameSettingsController : MonoBehaviour
     {
         [SerializeField] private GameSceneController navigation;
         [SerializeField] private UiScreen optionsScreen;
@@ -26,6 +28,7 @@ namespace Lumivale.Start.Game
         [SerializeField] private GameChoiceButton mode;
         [SerializeField] private GameChoiceButton quality;
         [SerializeField] private GameChoiceButton language;
+        [SerializeField] private TMP_Dropdown languageDropdown;
         [SerializeField] private UnityEngine.UI.Button apply;
         [SerializeField] private UnityEngine.UI.Button reset;
         [SerializeField] private UnityEngine.UI.Button back;
@@ -37,6 +40,7 @@ namespace Lumivale.Start.Game
         private GameBootstrap host;
         private SettingsValues draft;
         private int bindVersion;
+        private int dropdownCaptionVersion;
         private bool started;
         private bool ready;
 
@@ -53,6 +57,8 @@ namespace Lumivale.Start.Game
         public GameChoiceButton ModeButton => mode;
         public GameChoiceButton QualityButton => quality;
         public GameChoiceButton LanguageButton => language;
+        public TMP_Dropdown LanguageDropdown => languageDropdown;
+        public bool IsLanguageDropdownOpen => languageDropdown != null && languageDropdown.IsExpanded;
         public UnityEngine.UI.Button ApplyButton => apply;
         public UnityEngine.UI.Button ResetButton => reset;
         public UnityEngine.UI.Button BackButton => back;
@@ -66,6 +72,29 @@ namespace Lumivale.Start.Game
         public Func<SettingsValues, SettingsValues> DraftApplyOverride { get; set; }
         public Func<bool> BackRequested { get; set; }
         public string StatusMessage => status != null ? status.text : null;
+        public void ShowStatus(string key) => GameText.Set(status, key);
+
+        /// <summary>Wires the native two-step language selector while retaining the historical row reference.</summary>
+        public void ConfigureLanguageDropdown(TMP_Dropdown dropdown)
+        {
+            if (languageDropdown != null) languageDropdown.onValueChanged.RemoveListener(LanguageSelected);
+            languageDropdown = dropdown;
+            if (languageDropdown == null) return;
+            if (language != null)
+            {
+                language.ChoiceRequested -= LanguageChanged;
+                language.enabled = false;
+            }
+            languageDropdown.ClearOptions();
+            languageDropdown.AddOptions(new List<string> { "English", "Français" });
+            languageDropdown.SetValueWithoutNotify(draft?.LanguageCode == "fr" ? 1 : 0);
+            if (ready) languageDropdown.onValueChanged.AddListener(LanguageSelected);
+        }
+
+        public bool CloseLanguageDropdown(bool restoreFocus = true)
+        {
+            return HideDropdown(languageDropdown, restoreFocus);
+        }
 
         public void Configure(GameSceneController sceneNavigation, UiScreen options,
             UnityEngine.UI.Button mainOptions, UnityEngine.UI.Button pausedOptions,
@@ -133,6 +162,7 @@ namespace Lumivale.Start.Game
                     subscriptions.Add(host.Input.Subscribe("Gameplay/Sfx3D", _ => PlayGameplay3D()));
                 }
                 Wire(true);
+                LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
                 ready = true;
             }
             catch (OperationCanceledException)
@@ -154,8 +184,7 @@ namespace Lumivale.Start.Game
             if (!CanInteract || host.UI.IsOpen("Options")) return;
             draft = host.Settings.Current;
             RefreshView();
-            status.text = DraftApplyOverride == null ? "Apply saves changes. Back discards unapplied changes." :
-                string.Empty;
+            GameText.Set(status, DraftApplyOverride == null ? "options.draft.help" : string.Empty);
             host.UI.OpenModal("Options");
             DraftOpened?.Invoke();
             PlayUiSound();
@@ -183,14 +212,15 @@ namespace Lumivale.Start.Game
                     draft = host.Settings.Current;
                 }
                 RefreshView();
-                status.text = "Applied and saved.";
+                GameText.Set(status, "options.status.applied");
                 PlayUiSound();
                 DraftApplied?.Invoke();
                 return true;
             }
             catch (Exception exception)
             {
-                status.text = $"Changes could not be fully applied/saved: {exception.Message}";
+                GameText.Set(status, "options.status.apply_failed");
+                Debug.Log("Options apply failed: " + exception, this);
                 return false;
             }
         }
@@ -200,8 +230,8 @@ namespace Lumivale.Start.Game
             if (!CanInteract || !IsOpen) return;
             draft = host.Settings.Defaults;
             RefreshView();
-            status.text = DraftApplyOverride == null ? "Defaults selected. Apply to save, or Back to discard." :
-                "Defaults selected.";
+            host.Localization.Preview(draft.LanguageCode);
+            GameText.Set(status, DraftApplyOverride == null ? "options.status.defaults_help" : "options.status.defaults");
             PlayUiSound();
             DraftReset?.Invoke();
         }
@@ -216,7 +246,11 @@ namespace Lumivale.Start.Game
 
         private void OnScreenClosed(string id)
         {
-            if (id == "Options") draft = null;
+            if (id != "Options") return;
+            CloseDropdowns(restoreFocus: false);
+            draft = null;
+            if (host != null && host.IsReady && host.Localization.IsInitialized)
+                host.Localization.Preview(host.Settings.Current.LanguageCode);
         }
 
         private void MasterChanged(float value) { if (draft != null) { draft.MasterVolume = value; RefreshVolumeLabels(); } }
@@ -248,16 +282,31 @@ namespace Lumivale.Start.Game
         private void QualityChanged(int delta)
         {
             if (draft == null) return;
-            var choices = host.Settings.Capabilities.QualityNames;
-            draft.QualityName = choices[Wrap(IndexOf(choices, draft.QualityName) + delta, choices.Count)];
+            var preset = GameGraphicsPresets.Classify(draft, host.Settings.RenderingCapabilities);
+            int index = preset == GameGraphicsPreset.Custom ? (delta < 0 ? 0 : -1) : (int)preset;
+            draft = GameGraphicsPresets.Apply(draft, (GameGraphicsPreset)Wrap(index + delta, 3),
+                host.Settings.RenderingCapabilities);
             RefreshChoiceLabels();
         }
 
         private void LanguageChanged(int delta)
         {
+            if (languageDropdown != null) return;
             if (draft == null) return;
             var choices = host.Settings.SupportedLanguages;
             draft.LanguageCode = choices[Wrap(IndexOf(choices, draft.LanguageCode) + delta, choices.Count)];
+            host.Localization.Preview(draft.LanguageCode);
+            RefreshChoiceLabels();
+        }
+
+        private void LanguageSelected(int index)
+        {
+            if (!CanInteract || !IsOpen || draft == null || index < 0 || index > 1) return;
+            string selected = index == 1 ? "fr" : "en";
+            if (draft.LanguageCode == selected) return;
+            draft.LanguageCode = selected;
+            RefreshLanguageCaption();
+            host.Localization.Preview(selected);
             RefreshChoiceLabels();
         }
 
@@ -281,22 +330,61 @@ namespace Lumivale.Start.Game
 
         private void RefreshVolumeLabels()
         {
-            masterValue.text = $"Master Volume: {Mathf.RoundToInt(draft.MasterVolume * 100f)}%";
-            musicValue.text = $"Music Volume: {Mathf.RoundToInt(draft.MusicVolume * 100f)}%";
-            sfxValue.text = $"SFX Volume: {Mathf.RoundToInt(draft.SfxVolume * 100f)}%";
+            GameText.Set(masterValue, "options.audio.master", Mathf.RoundToInt(draft.MasterVolume * 100f));
+            GameText.Set(musicValue, "options.audio.music", Mathf.RoundToInt(draft.MusicVolume * 100f));
+            GameText.Set(sfxValue, "options.audio.sfx", Mathf.RoundToInt(draft.SfxVolume * 100f));
         }
 
         private void RefreshChoiceLabels()
         {
-            Label(resolution, $"Resolution: {draft.Width} x {draft.Height}");
-            Label(mode, $"Display: {draft.DisplayMode}");
-            Label(quality, $"Quality: {draft.QualityName}");
-            Label(language, $"Language preference: {draft.LanguageCode}");
+            if (!GameText.IsReady) return;
+            SetGraphicsChoice("resolution", resolution, true, "options.graphics.resolution", true, draft.Width, draft.Height);
+            SetGraphicsChoice("mode", mode, true, "options.graphics.display", true, GameText.Text("options.display." + draft.DisplayMode));
+            SetGraphicsChoice("quality", quality, true, "options.graphics.general_quality", true,
+                GameText.Text("options.quality." + GameGraphicsPresets.Classify(draft, host.Settings.RenderingCapabilities)));
+            RefreshLanguageCaption();
+            RefreshGraphicsChoices();
         }
 
-        private static void Label(GameChoiceButton button, string value)
+        internal async void RefreshDropdownCaptions()
         {
-            button.GetComponentInChildren<TextMeshProUGUI>().text = value;
+            int requestVersion = ++dropdownCaptionVersion;
+            int version = bindVersion;
+            if (draft == null || !GameText.IsReady) return;
+            RefreshChoiceLabels();
+            try
+            {
+                // A newly activated native dropdown runs Start after the panel activation
+                // and replaces its caption with the option alone. Restore the full caption
+                // once, after that initialization, without changing its selected value.
+                await Awaitable.NextFrameAsync(destroyCancellationToken);
+                if (this == null || version != bindVersion || requestVersion != dropdownCaptionVersion ||
+                    !IsOpen || draft == null || !GameText.IsReady) return;
+                RefreshChoiceLabels();
+            }
+            catch (OperationCanceledException) { }
+        }
+
+        private void RefreshLanguageCaption()
+        {
+            if (draft == null) return;
+            string autonym = draft.LanguageCode == "fr" ? "Français" : "English";
+            if (languageDropdown == null) Label(language, "options.interface.language", autonym);
+            else
+            {
+                languageDropdown.SetValueWithoutNotify(draft.LanguageCode == "fr" ? 1 : 0);
+                GameText.Set(languageDropdown.captionText, "options.interface.language", autonym);
+            }
+        }
+
+        private void LocaleChanged(Locale locale)
+        {
+            if (draft != null) RefreshView();
+        }
+
+        private static void Label(GameChoiceButton button, string key, params object[] args)
+        {
+            if (button != null) GameText.Set(button.GetComponentInChildren<TextMeshProUGUI>(), key, args);
         }
 
         private void PlayUiSound()
@@ -320,6 +408,8 @@ namespace Lumivale.Start.Game
 
         private void Wire(bool wire)
         {
+            WireGraphicsDropdowns(wire);
+            WireGraphics(wire);
             Button(menuOptions, OpenOptions, wire);
             Button(pauseOptions, OpenOptions, wire);
             Button(apply, ApplyDraft, wire);
@@ -330,10 +420,11 @@ namespace Lumivale.Start.Game
                 master.onValueChanged.AddListener(MasterChanged);
                 music.onValueChanged.AddListener(MusicChanged);
                 sfx.onValueChanged.AddListener(SfxChanged);
-                resolution.ChoiceRequested += ResolutionChanged;
-                mode.ChoiceRequested += ModeChanged;
-                quality.ChoiceRequested += QualityChanged;
-                language.ChoiceRequested += LanguageChanged;
+                if (GetGraphicsDropdown("resolution") == null) resolution.ChoiceRequested += ResolutionChanged;
+                if (GetGraphicsDropdown("mode") == null) mode.ChoiceRequested += ModeChanged;
+                if (GetGraphicsDropdown("quality") == null) quality.ChoiceRequested += QualityChanged;
+                if (languageDropdown != null) languageDropdown.onValueChanged.AddListener(LanguageSelected);
+                else language.ChoiceRequested += LanguageChanged;
             }
             else
             {
@@ -344,6 +435,7 @@ namespace Lumivale.Start.Game
                 if (mode != null) mode.ChoiceRequested -= ModeChanged;
                 if (quality != null) quality.ChoiceRequested -= QualityChanged;
                 if (language != null) language.ChoiceRequested -= LanguageChanged;
+                if (languageDropdown != null) languageDropdown.onValueChanged.RemoveListener(LanguageSelected);
             }
             if (feedbackButtons != null)
                 foreach (var button in feedbackButtons) Button(button, PlayUiSound, wire);
@@ -362,7 +454,9 @@ namespace Lumivale.Start.Game
         private void ReleaseBindings()
         {
             ready = false;
+            CloseDropdowns(restoreFocus: false);
             draft = null;
+            LocalizationSettings.SelectedLocaleChanged -= LocaleChanged;
             Wire(false);
             if (host != null && host.Coordinator != null) host.UI.ScreenClosed -= OnScreenClosed;
             for (int index = subscriptions.Count - 1; index >= 0; index--) subscriptions[index].Dispose();

@@ -35,9 +35,9 @@ et les sauvegardes. Ces deux scènes, dans cet ordre, constituent le build du je
 
 ## Organisation
 
-- `Assets/Game/Runtime` : Bootstrap, Configuration, Gameplay, Menu, Save et UI,
+- `Assets/Game/Runtime` : Bootstrap, Configuration, Gameplay, Localization, Menu, Save et UI,
   dans l'assembly et le namespace `Lumivale.Start.Game`.
-- `Assets/Game/Scenes`, `Prefabs`, `Input`, `Audio` : assets du parcours actif.
+- `Assets/Game/Scenes`, `Prefabs`, `Input`, `Audio`, `Localization` : assets du parcours actif.
 - `Assets/Game/Editor` : sortie contrôlée de Play et commandes de build.
 - `Assets/Game/Tests` : intégrations Editor et PlayMode du Starter.
 - `Assets/Settings` et `Assets/TextMesh Pro` : ressources de rendu et de texte conservées.
@@ -57,8 +57,24 @@ Le Starter n'effectue aucun autosave.
 
 Options propose Gameplay, Controls, Graphics, Audio et Interface. Apply valide,
 applique et enregistre le brouillon ; Back demande confirmation des changements.
-Les prompts suivent le périphérique et les bindings effectifs. Credits défile en
-temps non affecté par la pause. Exit attend l'arrêt des services avant de quitter.
+Graphics regroupe ses treize réglages en sections empilées Affichage, Image et Détails,
+avec un titre au-dessus de chaque groupe dans la même zone défilante. Les listes
+déroulantes affichent « Nom : valeur » ; ouvrir la liste ou y naviguer conserve le
+brouillon, puis un choix explicite sélectionne la valeur disponible. Language
+utilise cette même présentation. Les retours de rebinding et diagnostics restent
+dans la zone de statut commune des Options. Les prompts suivent le périphérique
+et les bindings effectifs ; la manette masque le curseur, une activité clavier ou
+souris le réaffiche. Le survol souris est également bloqué en mode manette.
+Cette règle persiste entre les scènes et restaure l'état
+initial à l'arrêt du Bootstrap. Credits défile en temps non affecté par la pause.
+Exit attend l'arrêt des services avant de quitter.
+
+L'interface est disponible en français et en anglais via Unity Localization
+1.5.13. Language dans Interface prévisualise la langue ; Apply l'enregistre dans
+le document Settings existant et l'abandon du brouillon restaure la précédente.
+Au premier lancement sans préférence valide, le système français choisit Français,
+les autres langues choisissent English. Les détails sont dans le
+[guide de localisation](Documentation/LOCALIZATION.md).
 
 [GameBootstrap.cs](Assets/Game/Runtime/Bootstrap/GameBootstrap.cs) compose les
 modules Core. Settings et Audio restent indépendants ; leur synchronisation est
@@ -81,6 +97,8 @@ change ni ces contrats ni les données existantes.
 - [Checklist du Player](Documentation/MANUAL_PLAYER_CHECKLIST.md) et
   [revue des menus](Documentation/POLISH_MANUAL_CHECKLIST.md).
 - [Architecture, compatibilité et limites](Documentation/ARCHITECTURE.md).
+- [Graphics, presets, performances et compatibilité Windows](Documentation/GRAPHICS_AND_PERFORMANCE.md).
+- [Localisation, langues, tables et textes dynamiques](Documentation/LOCALIZATION.md).
 
 ## Exécuter les tests
 

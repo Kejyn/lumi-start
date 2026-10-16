@@ -35,6 +35,10 @@ d'accéder aux services. `GameSceneController` raccorde navigation, Input et pau
 `GameplaySnapshotAdapter` l'applique lorsque la destination est prête.
 
 Les seules scènes du build sont `GameMenu`, puis `GameDemo`.
+Le service Starter `GameLocalizationService` attend Unity Localization et les
+tables `GameUI` avant que le Bootstrap soit prêt. Il applique le LanguageCode de
+Settings et encadre les aperçus ; les traductions et les ressources officielles
+restent dans le jeu, sans nouvelle dépendance Core. Voir [Localisation](LOCALIZATION.md).
 Editor, Build et tests utilisent des assemblies séparées du runtime Player.
 L'interface repose sur les prefabs existants, sans étape de génération préalable.
 Voir [l'arborescence](ARBORESCENCE_PROJET.md) pour les fichiers et leurs rôles.

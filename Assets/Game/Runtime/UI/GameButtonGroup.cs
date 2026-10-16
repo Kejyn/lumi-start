@@ -92,7 +92,11 @@ namespace Lumivale.Start.Game
                     if (!IsVisibleLabel(label, child)) continue;
                     // TMP preferredWidth already includes its own positive margins.
                     Vector4 margin = label.margin;
-                    float width = label.preferredWidth - Mathf.Max(0f, margin.x) - Mathf.Max(0f, margin.z);
+                    // Locale changes must not resize the approved frames. Non-localized groups
+                    // keep their existing content fitting; translated groups use the design locale.
+                    string referenceText = GameText.ReferenceLayoutText(label);
+                    float preferred = referenceText == null ? label.preferredWidth : label.GetPreferredValues(referenceText).x;
+                    float width = preferred - Mathf.Max(0f, margin.x) - Mathf.Max(0f, margin.z);
                     longest = Mathf.Max(longest, width);
                 }
             }

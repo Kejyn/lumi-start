@@ -154,6 +154,7 @@ namespace Lumivale.Start.GameTests
             PersistenceService previousPersistence = null;
             Lumivale.Core.Settings.SettingsService previousSettings = null;
             AudioService previousAudio = null;
+            GameLocalizationService previousLocalization = null;
             var saved = new GameSaveData { Counter = 7, PositionX = 1.25f, PositionY = .5f, PositionZ = -2f };
             for (int pass = 0; pass < 2; pass++)
             {
@@ -179,6 +180,8 @@ namespace Lumivale.Start.GameTests
                 Assert.That(host.Persistence, Is.Not.SameAs(previousPersistence));
                 Assert.That(host.Settings, Is.Not.SameAs(previousSettings));
                 Assert.That(host.Audio, Is.Not.SameAs(previousAudio));
+                Assert.That(host.Localization, Is.Not.SameAs(previousLocalization));
+                Assert.That(host.Localization.IsInitialized, Is.True);
                 Assert.That(session.BootDismissed, Is.False);
                 Assert.That(host.UI.CurrentScreenId, Is.EqualTo(menu.Views.Boot.Id));
                 Assert.That(EventSystem.current.currentSelectedGameObject, Is.Null,
@@ -195,8 +198,11 @@ namespace Lumivale.Start.GameTests
                     values.MasterVolume = .42f;
                     values.MusicVolume = .31f;
                     values.SfxVolume = .63f;
+                    values.LanguageCode = "fr";
                     host.Settings.Update(values);
                     host.Settings.Save();
+                    host.Localization.Preview("fr");
+                    yield return Wait(host.Localization.PreviewReady, "Initial French locale");
                     var save = host.Persistence.SaveAsync("demo-1", saved, GameSaveData.CreateSchema());
                     yield return Wait(save);
                     Assert.That(save.Result.IsSuccess, Is.True, save.Result.Message);
@@ -213,6 +219,8 @@ namespace Lumivale.Start.GameTests
                 Assert.That(host.Settings.Current.MasterVolume, Is.EqualTo(.42f));
                 Assert.That(host.Settings.Current.MusicVolume, Is.EqualTo(.31f));
                 Assert.That(host.Settings.Current.SfxVolume, Is.EqualTo(.63f));
+                Assert.That(host.Settings.Current.LanguageCode, Is.EqualTo("fr"));
+                Assert.That(UnityEngine.Localization.Settings.LocalizationSettings.SelectedLocale.Identifier.Code, Is.EqualTo("fr"));
                 AssertAudioSynchronized(host);
                 yield return Press(Key.Space);
                 yield return ReadyMenu();
@@ -243,12 +251,14 @@ namespace Lumivale.Start.GameTests
                 previousPersistence = host.Persistence;
                 previousSettings = host.Settings;
                 previousAudio = host.Audio;
+                previousLocalization = host.Localization;
                 yield return Wait(host.ShutdownAsync(), "Controlled session shutdown");
                 yield return PlayerFrames(1);
                 Assert.That(previousInput.IsInitialized, Is.False);
                 Assert.That(previousPersistence.IsInitialized, Is.False);
                 Assert.That(previousSettings.IsInitialized, Is.False);
                 Assert.That(previousAudio.IsInitialized, Is.False);
+                Assert.That(previousLocalization.IsInitialized, Is.False);
                 Assert.That(Object.FindObjectsByType<LumiAudioRunner>(FindObjectsSortMode.None), Is.Empty);
                 InputSystem.RemoveDevice(keyboard);
                 keyboard = null;

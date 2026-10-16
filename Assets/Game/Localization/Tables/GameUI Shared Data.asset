@@ -1,0 +1,952 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: GameUI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: GameUI
+  m_TableCollectionNameGuidString: d0a8530137c3e6049b672bd389cb5206
+  m_Entries:
+  - m_Id: 1331593216
+    m_Key: binding.action.counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702080
+    m_Key: binding.action.move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702081
+    m_Key: binding.action.sfx2d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702082
+    m_Key: binding.action.sfx3d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702083
+    m_Key: binding.action_label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702084
+    m_Key: binding.composite_part
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702085
+    m_Key: binding.control.alt_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702086
+    m_Key: binding.control.alt_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702087
+    m_Key: binding.control.arrow_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702088
+    m_Key: binding.control.arrow_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702089
+    m_Key: binding.control.arrow_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702090
+    m_Key: binding.control.arrow_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702091
+    m_Key: binding.control.backspace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702092
+    m_Key: binding.control.ctrl_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702093
+    m_Key: binding.control.ctrl_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702094
+    m_Key: binding.control.enter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702095
+    m_Key: binding.control.escape
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702096
+    m_Key: binding.control.mouse_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702097
+    m_Key: binding.control.mouse_middle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702098
+    m_Key: binding.control.mouse_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702099
+    m_Key: binding.control.mouse_wheel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702100
+    m_Key: binding.control.numpad_enter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702101
+    m_Key: binding.control.shift_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702102
+    m_Key: binding.control.shift_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702103
+    m_Key: binding.control.space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702104
+    m_Key: binding.control.tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702105
+    m_Key: binding.device.gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702106
+    m_Key: binding.device.keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702107
+    m_Key: binding.device.mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702108
+    m_Key: binding.listening
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702109
+    m_Key: binding.part.down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702110
+    m_Key: binding.part.left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702111
+    m_Key: binding.part.right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702112
+    m_Key: binding.part.up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702113
+    m_Key: binding.unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702114
+    m_Key: binding.unbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702115
+    m_Key: common.back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702116
+    m_Key: common.confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702117
+    m_Key: common.credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702118
+    m_Key: common.delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702119
+    m_Key: common.exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702120
+    m_Key: common.game_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702121
+    m_Key: common.new_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702122
+    m_Key: common.no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702123
+    m_Key: common.options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702124
+    m_Key: common.save_load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702125
+    m_Key: common.settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702126
+    m_Key: common.unavailable_mark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702127
+    m_Key: common.yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702128
+    m_Key: controls.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702129
+    m_Key: controls.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702130
+    m_Key: credits.roll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702131
+    m_Key: menu.continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702132
+    m_Key: menu.new_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702133
+    m_Key: menu.quit.cleanup_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702134
+    m_Key: menu.quit.failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702135
+    m_Key: options.apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702136
+    m_Key: options.audio.master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702137
+    m_Key: options.audio.music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702138
+    m_Key: options.audio.sfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896384
+    m_Key: options.bindings.reset_all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896385
+    m_Key: options.controls.canceled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896386
+    m_Key: options.controls.changed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896387
+    m_Key: options.controls.defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896388
+    m_Key: options.controls.failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896389
+    m_Key: options.controls.listening_gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896390
+    m_Key: options.controls.listening_keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896391
+    m_Key: options.controls.listening_mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896392
+    m_Key: options.controls.reserved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896393
+    m_Key: options.controls.stored_invalid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896394
+    m_Key: options.display.ExclusiveFullScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896395
+    m_Key: options.display.FullScreenWindow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896396
+    m_Key: options.display.MaximizedWindow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896397
+    m_Key: options.display.Windowed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896398
+    m_Key: options.draft.help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896399
+    m_Key: options.gameplay.explanation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896400
+    m_Key: options.gameplay.invert_y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896401
+    m_Key: options.gameplay.sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896402
+    m_Key: options.graphics.aa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896403
+    m_Key: options.graphics.anisotropic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896404
+    m_Key: options.graphics.display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896405
+    m_Key: options.graphics.fps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896406
+    m_Key: options.graphics.general_quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896407
+    m_Key: options.graphics.lod
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896408
+    m_Key: options.graphics.post_processing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896409
+    m_Key: options.graphics.render_scale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896410
+    m_Key: options.graphics.resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896411
+    m_Key: options.graphics.shadow_distance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896412
+    m_Key: options.graphics.shadows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896413
+    m_Key: options.graphics.textures
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896414
+    m_Key: options.graphics.vsync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896415
+    m_Key: options.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896416
+    m_Key: options.interface.explanation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896417
+    m_Key: options.interface.hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896418
+    m_Key: options.interface.language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896419
+    m_Key: options.interface.scale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896420
+    m_Key: options.quality.Custom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896421
+    m_Key: options.quality.High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896422
+    m_Key: options.quality.Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896423
+    m_Key: options.quality.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896424
+    m_Key: options.quality.Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896425
+    m_Key: options.reset_defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896426
+    m_Key: options.status.applied
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896427
+    m_Key: options.status.apply_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896428
+    m_Key: options.status.defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896429
+    m_Key: options.status.defaults_help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896430
+    m_Key: options.tab.audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896431
+    m_Key: options.tab.controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896432
+    m_Key: options.tab.gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896433
+    m_Key: options.tab.graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896434
+    m_Key: options.tab.interface
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896435
+    m_Key: options.unsaved.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896436
+    m_Key: options.value.forced_on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896437
+    m_Key: options.value.off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896438
+    m_Key: options.value.on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896439
+    m_Key: options.value.per_texture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896440
+    m_Key: options.value.unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896441
+    m_Key: options.value.vsync_suffix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896442
+    m_Key: pause.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896443
+    m_Key: pause.resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896444
+    m_Key: pause.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896445
+    m_Key: persistence.status.Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896446
+    m_Key: persistence.status.Incompatible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896447
+    m_Key: persistence.status.InvalidData
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896448
+    m_Key: persistence.status.NotFound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896449
+    m_Key: persistence.status.NotInitialized
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896450
+    m_Key: persistence.status.ServiceStopping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896451
+    m_Key: persistence.status.StorageError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896452
+    m_Key: persistence.status.Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896453
+    m_Key: prompt.gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896454
+    m_Key: prompt.open_saves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896455
+    m_Key: prompt.options.next.gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896456
+    m_Key: prompt.options.next.keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896457
+    m_Key: prompt.options.previous.gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896458
+    m_Key: prompt.options.previous.keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896459
+    m_Key: prompt.slot.delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896460
+    m_Key: prompt.slot.new_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896461
+    m_Key: prompt.start.gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896462
+    m_Key: prompt.start.keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896463
+    m_Key: quit.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896464
+    m_Key: quit.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896465
+    m_Key: return.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896466
+    m_Key: return.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896467
+    m_Key: save.access_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896468
+    m_Key: save.available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896469
+    m_Key: save.back_to_pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896470
+    m_Key: save.backup_available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896471
+    m_Key: save.canceled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896472
+    m_Key: save.checking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896473
+    m_Key: save.confirm_delete_demo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896474
+    m_Key: save.confirm_delete_slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896475
+    m_Key: save.counter_decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896476
+    m_Key: save.counter_increase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896477
+    m_Key: save.delete_permanently
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896478
+    m_Key: save.delete_selected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896479
+    m_Key: save.delete_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896480
+    m_Key: save.deleted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896481
+    m_Key: save.empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896482
+    m_Key: save.gameplay_state
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896483
+    m_Key: save.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896484
+    m_Key: save.load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896485
+    m_Key: save.manual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896486
+    m_Key: save.new_game_needs_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896487
+    m_Key: save.no_data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896488
+    m_Key: save.no_empty_slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896489
+    m_Key: save.preview.empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896490
+    m_Key: save.preview.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896491
+    m_Key: save.reading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896492
+    m_Key: save.recoverable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896493
+    m_Key: save.recovered
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896494
+    m_Key: save.result.Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896495
+    m_Key: save.result.Incompatible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896496
+    m_Key: save.result.InvalidData
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896497
+    m_Key: save.result.NotFound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896498
+    m_Key: save.result.NotInitialized
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896499
+    m_Key: save.result.ServiceStopping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896500
+    m_Key: save.result.StorageError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896501
+    m_Key: save.result.Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896502
+    m_Key: save.save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896503
+    m_Key: save.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896504
+    m_Key: save.slot_selector
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896505
+    m_Key: save.slot_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896506
+    m_Key: save.slots.entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896507
+    m_Key: save.slots.list
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896508
+    m_Key: save.slots.none
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896509
+    m_Key: save.unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896510
+    m_Key: selection.delete.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896511
+    m_Key: selection.delete.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896512
+    m_Key: selection.delete_save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896513
+    m_Key: selection.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556447727616
+    m_Key: binding.control.caps_lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699136
+    m_Key: binding.control.context_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699137
+    m_Key: binding.control.delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699138
+    m_Key: binding.control.dpad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699139
+    m_Key: binding.control.dpad_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699140
+    m_Key: binding.control.dpad_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699141
+    m_Key: binding.control.dpad_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699142
+    m_Key: binding.control.dpad_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699143
+    m_Key: binding.control.dpad_x
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699144
+    m_Key: binding.control.dpad_y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699145
+    m_Key: binding.control.end
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699146
+    m_Key: binding.control.home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699147
+    m_Key: binding.control.insert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699148
+    m_Key: binding.control.left_stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699149
+    m_Key: binding.control.left_stick_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699150
+    m_Key: binding.control.left_stick_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699151
+    m_Key: binding.control.left_stick_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699152
+    m_Key: binding.control.left_stick_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699153
+    m_Key: binding.control.left_stick_x
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699154
+    m_Key: binding.control.left_stick_y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699155
+    m_Key: binding.control.meta_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699156
+    m_Key: binding.control.meta_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699157
+    m_Key: binding.control.num_lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699158
+    m_Key: binding.control.page_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699159
+    m_Key: binding.control.page_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699160
+    m_Key: binding.control.pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699161
+    m_Key: binding.control.print_screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699162
+    m_Key: binding.control.right_stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699163
+    m_Key: binding.control.right_stick_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699164
+    m_Key: binding.control.right_stick_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699165
+    m_Key: binding.control.right_stick_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699166
+    m_Key: binding.control.right_stick_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699167
+    m_Key: binding.control.right_stick_x
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699168
+    m_Key: binding.control.right_stick_y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699169
+    m_Key: binding.control.scroll_lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196172087984128
+    m_Key: options.interface.language_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172733857792
+    m_Key: options.graphics.category.display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189440
+    m_Key: options.graphics.category.image
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189441
+    m_Key: options.graphics.category.details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189442
+    m_Key: options.value.percentage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189443
+    m_Key: options.value.distance
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7496454131389300827
+  references:
+    version: 2
+    RefIds:
+    - rid: 7496454131389300827
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1792089800609

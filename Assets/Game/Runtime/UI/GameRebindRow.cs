@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace Lumivale.Start.Game
 {
@@ -25,6 +27,7 @@ namespace Lumivale.Start.Game
         private Color idleOutlineColor;
         private Vector2 idleOutlineDistance;
         private bool idleOutlineEnabled;
+        private InputService presentedInput;
 
         public string ActionPath => actionPath;
         public Guid BindingId => Guid.Parse(bindingId);
@@ -54,23 +57,39 @@ namespace Lumivale.Start.Game
         public void Refresh(InputService input)
         {
             if (input == null || !input.IsInitialized || bindingLabel == null) return;
+            presentedInput = input;
+            if (!GameText.IsReady) return;
             var action = input.GetAction(actionPath);
             for (int index = 0; index < action.bindings.Count; index++)
             {
                 var binding = action.bindings[index];
                 if (binding.id != BindingId) continue;
-                bindingDisplay = string.IsNullOrEmpty(binding.effectivePath) ? "Unbound" : action.GetBindingDisplayString(index);
+                bindingDisplay = string.IsNullOrEmpty(binding.effectivePath) ? GameText.Text("binding.unbound") :
+                    GameInputPresentation.GetBindingLabel(action, index);
                 if (string.IsNullOrEmpty(bindingDisplay)) bindingDisplay = binding.effectivePath;
                 RefreshBindingText();
                 if (actionLabel != null)
                 {
-                    string device = controlsPath.StartsWith("<Gamepad>", StringComparison.Ordinal) ? "Gamepad" :
-                        controlsPath.StartsWith("<Mouse>", StringComparison.Ordinal) ? "Mouse" : "Keyboard";
-                    actionLabel.text = action.name + (binding.isPartOfComposite ? " / " + binding.name : "") + "  ·  " + device;
+                    string deviceKey = controlsPath.StartsWith("<Gamepad>", StringComparison.Ordinal) ? "binding.device.gamepad" :
+                        controlsPath.StartsWith("<Mouse>", StringComparison.Ordinal) ? "binding.device.mouse" : "binding.device.keyboard";
+                    string actionKey;
+                    switch (action.name)
+                    {
+                        case "Move": actionKey = "binding.action.move"; break;
+                        case "IncrementCounter": actionKey = "binding.action.counter"; break;
+                        case "Sfx2D": actionKey = "binding.action.sfx2d"; break;
+                        case "Sfx3D": actionKey = "binding.action.sfx3d"; break;
+                        default: actionKey = null; break;
+                    }
+                    string actionName = actionKey != null ? GameText.Text(actionKey) : action.name;
+                    if (binding.isPartOfComposite)
+                        actionName = GameText.Text("binding.composite_part", actionName,
+                            GameText.Text("binding.part." + binding.name.ToLowerInvariant()));
+                    actionLabel.text = GameText.Text("binding.action_label", actionName, GameText.Text(deviceKey));
                 }
                 return;
             }
-            bindingDisplay = "Binding unavailable";
+            bindingDisplay = GameText.Text("binding.unavailable");
             RefreshBindingText();
             if (rebindButton != null) rebindButton.interactable = false;
         }
@@ -105,8 +124,13 @@ namespace Lumivale.Start.Game
 
         private void RefreshBindingText()
         {
-            if (bindingLabel != null && (IsCapturing || bindingDisplay != null))
-                bindingLabel.text = IsCapturing ? "Listening\u2026" : bindingDisplay;
+            if (bindingLabel == null || (!IsCapturing && bindingDisplay == null)) return;
+            if (IsCapturing) GameText.Set(bindingLabel, "binding.listening");
+            else
+            {
+                GameText.Set(bindingLabel, string.Empty);
+                bindingLabel.text = bindingDisplay;
+            }
         }
 
         public void OnSelect(BaseEventData eventData)
@@ -136,16 +160,23 @@ namespace Lumivale.Start.Game
 
         private void OnEnable()
         {
+            LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
             if (rebindButton != null) rebindButton.onClick.AddListener(RequestRebind);
+            if (presentedInput != null) Refresh(presentedInput);
         }
 
         private void OnDisable()
         {
             SetCapture(false);
+            LocalizationSettings.SelectedLocaleChanged -= LocaleChanged;
             lastSelection = null;
             if (rebindButton != null) rebindButton.onClick.RemoveListener(RequestRebind);
         }
 
         private void RequestRebind() => RebindRequested?.Invoke(this);
+        private void LocaleChanged(Locale locale)
+        {
+            if (presentedInput != null) Refresh(presentedInput);
+        }
     }
 }

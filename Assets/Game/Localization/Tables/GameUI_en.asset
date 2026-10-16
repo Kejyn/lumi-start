@@ -1,0 +1,969 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameUI_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d0a8530137c3e6049b672bd389cb5206, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1331593216
+    m_Localized: Increment counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702080
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702081
+    m_Localized: 2D sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702082
+    m_Localized: 3D sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702083
+    m_Localized: "{0}  \xB7  {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702084
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702085
+    m_Localized: Left Alt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702086
+    m_Localized: Right Alt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702087
+    m_Localized: Down Arrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702088
+    m_Localized: Left Arrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702089
+    m_Localized: Right Arrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702090
+    m_Localized: Up Arrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702091
+    m_Localized: Backspace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702092
+    m_Localized: Left Ctrl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702093
+    m_Localized: Right Ctrl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702094
+    m_Localized: Enter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702095
+    m_Localized: Escape
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702096
+    m_Localized: LMB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702097
+    m_Localized: MMB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702098
+    m_Localized: RMB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702099
+    m_Localized: WHEEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702100
+    m_Localized: Numpad Enter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702101
+    m_Localized: Left Shift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702102
+    m_Localized: Right Shift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702103
+    m_Localized: Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702104
+    m_Localized: Tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702105
+    m_Localized: Gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702106
+    m_Localized: Keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702107
+    m_Localized: Mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702108
+    m_Localized: "Listening\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702109
+    m_Localized: Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702110
+    m_Localized: Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702111
+    m_Localized: Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702112
+    m_Localized: Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702113
+    m_Localized: Binding unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702114
+    m_Localized: Unbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702115
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702116
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702117
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702118
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702119
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702120
+    m_Localized: Game title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702121
+    m_Localized: New game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702122
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702123
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702124
+    m_Localized: Save & load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702125
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702126
+    m_Localized: "\u2014"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702127
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702128
+    m_Localized: 'Keyboard: arrows / WASD, Enter, Escape
+
+      Mouse: point and
+      click
+
+      Gamepad: D-pad / left stick, A, B, Start'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702129
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702130
+    m_Localized: "Game title\n\nKejyn \u2014 Developer\n\nDesign\nA simple foundation
+      for your next game.\n\nGameplay\nReplace this demo with your own mechanics.\n\nArt\nAdd
+      your own environments and characters.\n\nAudio\nReplace the demonstration music
+      and sounds.\n\nProduction\nBuilt with lumi-core and lumi-start.\n\nTesting\nThank
+      you to everyone who helps test the game.\n\nSpecial thanks\nTo the people who
+      support your project.\n\nEnd of demonstration credits"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702131
+    m_Localized: Continue game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702132
+    m_Localized: New game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702133
+    m_Localized: Cleanup reported an error. See the log for details.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702134
+    m_Localized: Unable to exit. See the log for details.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702135
+    m_Localized: Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702136
+    m_Localized: 'Master Volume: {0}%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702137
+    m_Localized: 'Music Volume: {0}%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702138
+    m_Localized: 'SFX Volume: {0}%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896384
+    m_Localized: Reset all bindings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896385
+    m_Localized: Rebinding canceled; the previous binding is unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896386
+    m_Localized: Binding changed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896387
+    m_Localized: Default controls selected.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896388
+    m_Localized: Could not start rebinding. Please try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896389
+    m_Localized: Press a gamepad control. Cancel to stop (10 seconds).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896390
+    m_Localized: Press a key. Cancel to stop (10 seconds).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896391
+    m_Localized: Press a mouse control. Cancel to stop (10 seconds).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896392
+    m_Localized: That control is reserved for Pause / Saves. The previous binding
+      is unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896393
+    m_Localized: Stored controls could not be loaded. Current controls are unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896394
+    m_Localized: Exclusive Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896395
+    m_Localized: Borderless Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896396
+    m_Localized: Maximized Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896397
+    m_Localized: Windowed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896398
+    m_Localized: Apply saves changes. Back discards unapplied changes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896399
+    m_Localized: Adjust movement controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896400
+    m_Localized: Invert forward / back movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896401
+    m_Localized: "Movement sensitivity   {0:0.00}\xD7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896402
+    m_Localized: 'Anti-aliasing: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896403
+    m_Localized: 'Anisotropic Filtering: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896404
+    m_Localized: 'Display: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896405
+    m_Localized: 'FPS Limit: {0}{1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896406
+    m_Localized: 'General Quality: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896407
+    m_Localized: 'LOD Quality: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896408
+    m_Localized: 'Post-processing: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896409
+    m_Localized: 'Render Scale: {0}%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896410
+    m_Localized: 'Resolution: {0} x {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896411
+    m_Localized: 'Shadow Distance: {0:0} m'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896412
+    m_Localized: 'Shadow Quality: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896413
+    m_Localized: 'Texture Quality: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896414
+    m_Localized: 'VSync: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896415
+    m_Localized: 'Up / Down: navigate | Left / Right: change | Apply saves | Back
+      cancels'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896416
+    m_Localized: Adjust interface scale and navigation hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896417
+    m_Localized: Show navigation hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896418
+    m_Localized: 'Language: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896419
+    m_Localized: Interface scale   {0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896420
+    m_Localized: Custom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896421
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896422
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896423
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896424
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896425
+    m_Localized: Reset to defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896426
+    m_Localized: Applied and saved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896427
+    m_Localized: Changes could not be saved. Please try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896428
+    m_Localized: Defaults selected.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896429
+    m_Localized: Defaults selected. Apply to save, or Back to discard.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896430
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896431
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896432
+    m_Localized: Gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896433
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896434
+    m_Localized: Interface
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896435
+    m_Localized: Save changes before leaving?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896436
+    m_Localized: Forced On
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896437
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896438
+    m_Localized: On
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896439
+    m_Localized: Per Texture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896440
+    m_Localized: Unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896441
+    m_Localized: ' (VSync)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896442
+    m_Localized: Game paused.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896443
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896444
+    m_Localized: Paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896445
+    m_Localized: Damaged save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896446
+    m_Localized: Incompatible save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896447
+    m_Localized: Invalid data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896448
+    m_Localized: Empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896449
+    m_Localized: Not ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896450
+    m_Localized: Stopping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896451
+    m_Localized: Storage unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896452
+    m_Localized: Saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896453
+    m_Localized: Move {Gameplay/Move}   Counter {Gameplay/IncrementCounter}   Pause
+      {Common/Pause}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896454
+    m_Localized: 'Save & load [{Common/OpenSaves}]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896455
+    m_Localized: '[{UI/NextOptionsTab}]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896456
+    m_Localized: '[E]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896457
+    m_Localized: '[{UI/PreviousOptionsTab}]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896458
+    m_Localized: '[A]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896459
+    m_Localized: '[{Common/SaveSlotAction}] Delete save'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896460
+    m_Localized: '[{Common/SaveSlotAction}] New game'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896461
+    m_Localized: Press {UI/StartContinue} to continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896462
+    m_Localized: Press Space to continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896463
+    m_Localized: Your unsaved progress will not be saved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896464
+    m_Localized: Exit game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896465
+    m_Localized: Unsaved progress will be lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896466
+    m_Localized: Return to main menu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896467
+    m_Localized: Save access failed. Check storage permissions and available space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896468
+    m_Localized: Available for a new game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896469
+    m_Localized: Back to Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896470
+    m_Localized: Backup available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896471
+    m_Localized: Operation canceled.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896472
+    m_Localized: Checking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896473
+    m_Localized: 'Delete slot {0} permanently?
+
+      Only this demonstration slot
+      is affected.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896474
+    m_Localized: 'Delete slot {0}?
+
+      This cannot be undone.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896475
+    m_Localized: Counter -
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896476
+    m_Localized: Counter +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896477
+    m_Localized: Delete permanently
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896478
+    m_Localized: Delete selected slot...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896479
+    m_Localized: Confirm deletion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896480
+    m_Localized: Slot deleted. A new game can now use this empty slot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896481
+    m_Localized: Empty slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896482
+    m_Localized: 'Counter: {0} | Cube: ({1:F2}, {2:F2}, {3:F2})'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896483
+    m_Localized: Three demo slots | Back returns to Pause | No automatic save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896484
+    m_Localized: Load cube and counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896485
+    m_Localized: Manual save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896486
+    m_Localized: A new game needs an empty slot. Existing saves are never replaced
+      automatically.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896487
+    m_Localized: No save data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896488
+    m_Localized: No empty slot is available. Load a save, or explicitly delete a
+      selected slot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896489
+    m_Localized: EMPTY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896490
+    m_Localized: SAVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896491
+    m_Localized: Reading save information
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896492
+    m_Localized: Recoverable save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896493
+    m_Localized: Recovered the previous valid save.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896494
+    m_Localized: The save is damaged. A valid backup may still be available. Delete
+      only if you want to replace it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896495
+    m_Localized: This save uses an unsupported model or version.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896496
+    m_Localized: The save data is invalid. The previous save has been preserved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896497
+    m_Localized: No save exists in this slot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896498
+    m_Localized: Saves are not ready yet. Please try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896499
+    m_Localized: The game is closing. No new save operation can start.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896500
+    m_Localized: Save storage could not be accessed. Check permissions and available
+      space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896501
+    m_Localized: Operation completed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896502
+    m_Localized: Save cube and counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896503
+    m_Localized: Saved game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896504
+    m_Localized: Slot {0} / 3 (Left / Right)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896505
+    m_Localized: Slot {0}  /  {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896506
+    m_Localized: '{0}: {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896507
+    m_Localized: 'Disk slots: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896508
+    m_Localized: 'Disk slots: none. Select a slot, then Save.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896509
+    m_Localized: Save unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896510
+    m_Localized: This action requires your confirmation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896511
+    m_Localized: Delete this save?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896512
+    m_Localized: Delete save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896513
+    m_Localized: Manual saves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556447727616
+    m_Localized: Caps Lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699136
+    m_Localized: Context Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699137
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699138
+    m_Localized: D-PAD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699139
+    m_Localized: D-PAD Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699140
+    m_Localized: D-PAD Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699141
+    m_Localized: D-PAD Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699142
+    m_Localized: D-PAD Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699143
+    m_Localized: D-PAD X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699144
+    m_Localized: D-PAD Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699145
+    m_Localized: End
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699146
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699147
+    m_Localized: Insert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699148
+    m_Localized: L-STICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699149
+    m_Localized: L-STICK Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699150
+    m_Localized: L-STICK Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699151
+    m_Localized: L-STICK Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699152
+    m_Localized: L-STICK Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699153
+    m_Localized: L-STICK X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699154
+    m_Localized: L-STICK Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699155
+    m_Localized: Left Windows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699156
+    m_Localized: Right Windows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699157
+    m_Localized: Num Lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699158
+    m_Localized: Page Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699159
+    m_Localized: Page Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699160
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699161
+    m_Localized: Print Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699162
+    m_Localized: R-STICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699163
+    m_Localized: R-STICK Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699164
+    m_Localized: R-STICK Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699165
+    m_Localized: R-STICK Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699166
+    m_Localized: R-STICK Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699167
+    m_Localized: R-STICK X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699168
+    m_Localized: R-STICK Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699169
+    m_Localized: Scroll Lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196172087984128
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172733857792
+    m_Localized: Display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189440
+    m_Localized: Image
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189441
+    m_Localized: Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189442
+    m_Localized: '{0:0.###}%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189443
+    m_Localized: '{0:0.###} m'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

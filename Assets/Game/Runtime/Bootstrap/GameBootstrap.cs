@@ -54,11 +54,13 @@ namespace Lumivale.Start.Game
         public InputActionAsset SourceAsset => inputActions;
         public string PreferenceKey => preferenceKey;
         public InputService Input => Coordinator.Context.Get<InputService>();
+        public GameCursorService Cursor => Coordinator.Context.Get<GameCursorService>();
         public UiService UI => Coordinator.Context.Get<UiService>();
         public PauseService Pause => Coordinator.Context.Get<PauseService>();
         public SceneFlowService Scenes => Coordinator.Context.Get<SceneFlowService>();
         public bool HasSettingsAudio => audioMixer != null;
         public SettingsService Settings => Coordinator.Context.Get<SettingsService>();
+        public GameLocalizationService Localization => Coordinator.Context.Get<GameLocalizationService>();
         public AudioService Audio => Coordinator.Context.Get<AudioService>();
         public AudioMixer Mixer => audioMixer;
         public AudioClip Music => demoMusic;
@@ -103,6 +105,7 @@ namespace Lumivale.Start.Game
                 [InputContext.Pause] = new[] { "UI", "Common" }
             };
             var input = new InputService(inputActions, contexts, InputContext.UI);
+            var cursor = new GameCursorService();
             var ui = new UiService();
             var pause = new PauseService("Pause", controlTimeScale: freezeTimeOnPause);
             var flow = new SceneFlowService(defaultTransition: new GameSceneTransition(input, ui, pause));
@@ -113,26 +116,28 @@ namespace Lumivale.Start.Game
                     string.IsNullOrEmpty(saveRootOverride) ? null : saveRootOverride)));
             if (!HasSettingsAudio)
             {
-                services.AddRange(new ILumiService[] { input, flow, ui, pause });
+                services.AddRange(new ILumiService[] { input, cursor, flow, ui, pause });
                 return services;
             }
 
-            var capabilities = new UnityGraphicsSettingsBackend().GetCapabilities();
-            var defaults = new SettingsValues
+            var graphics = new GameGraphicsBackend();
+            var capabilities = graphics.GetCapabilities();
+            var defaults = GameGraphicsPresets.Apply(new SettingsValues
             {
                 Width = capabilities.CurrentResolution.Width,
                 Height = capabilities.CurrentResolution.Height,
                 DisplayMode = capabilities.CurrentMode,
                 QualityName = capabilities.CurrentQualityName,
-                MasterVolume = 1f, MusicVolume = 0.5f, SfxVolume = 0.7f, LanguageCode = "en"
-            };
+                MasterVolume = 1f, MusicVolume = 0.5f, SfxVolume = 0.7f,
+                LanguageCode = GameLocalizationService.DetectLanguage(Application.systemLanguage)
+            }, GameGraphicsPreset.Medium, graphics.RenderingCapabilities);
             var settings = new SettingsService(new SettingsConfiguration(defaults, preferenceKey,
-                new[] { "en", "fr" }));
+                new[] { "en", "fr" }), graphics: graphics);
             var audio = new AudioService(new AudioConfiguration(audioMixer, masterGroup,
                 musicGroup, sfxGroup));
             var binding = new GameSettingsAudioBinding(demoMusic,
                 new[] { demoMusic, uiSound, gameplay2DSound, gameplay3DSound });
-            services.AddRange(new ILumiService[] { settings, audio, binding, input, flow, ui, pause });
+            services.AddRange(new ILumiService[] { settings, new GameLocalizationService(), audio, binding, input, cursor, flow, ui, pause });
             return services;
         }
 

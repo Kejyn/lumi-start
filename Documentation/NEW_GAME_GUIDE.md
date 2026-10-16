@@ -100,11 +100,13 @@ Pause/Options/Saves utilisent du temps non affecté par `Time.timeScale`.
 
 ## Settings et Audio
 
-Les défauts graphiques viennent des capacités de `UnityGraphicsSettingsBackend`.
+Les défauts graphiques viennent de `GameGraphicsBackend` et de `GameGraphicsPresets`.
 Une qualité persistée est identifiée par son nom. Le menu actif demande confirmation
 sur Back si le brouillon a changé ; Apply valide, applique et enregistre, Reset
-modifie le brouillon sans sauvegarde implicite. Le code de langue mémorisé ne traduit
-pas les textes.
+modifie le brouillon sans sauvegarde implicite. Language dans Interface prévisualise
+la locale officielle ; Apply confirme ce choix, tandis que l'abandon restaure la
+langue appliquée. Adapter les textes et locales sous `Assets/Game/Localization`
+en suivant [le guide de localisation](LOCALIZATION.md).
 
 Le mixer, les quatre WAV et leur provenance sont dans `Assets/Game/Audio`.
 Le mixer possède les groupes Master, Music et SFX, avec volumes exposés. Précharger

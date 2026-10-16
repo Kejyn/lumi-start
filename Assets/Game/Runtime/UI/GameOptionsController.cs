@@ -10,6 +10,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace Lumivale.Start.Game
 {
@@ -128,6 +130,7 @@ namespace Lumivale.Start.Game
                 confirmationRegistration = host.UI.Register(view.UnsavedConfirmation);
                 host.UI.ScreenClosed += OnScreenClosed;
                 host.Input.BindingsChanged += RefreshBindings;
+                LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
                 existingOptions.DraftOpened += BeginDraft;
                 existingOptions.DraftApplied += OnDraftApplied;
                 existingOptions.DraftReset += ResetProjectDraft;
@@ -200,22 +203,26 @@ namespace Lumivale.Start.Game
             CaptureAppliedSnapshot();
             RefreshPresentation();
             SelectTab(0);
-            SetBindingStatus(preferences.BindingDiagnostic ?? string.Empty);
+            SetBindingStatus(preferences.BindingDiagnostic == null ? string.Empty : "options.controls.stored_invalid");
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(view.Tabs[0].gameObject);
         }
 
         public void SelectTab(int index)
         {
             if (view == null || view.Panels == null || index < 0 || index >= view.Panels.Length) return;
+            bool closedDropdown = existingOptions != null && existingOptions.CloseDropdowns(restoreFocus: false);
             CancelCapture();
             CurrentTab = index;
             for (int tab = 0; tab < view.Panels.Length; tab++) view.Panels[tab].SetActive(tab == index);
+            existingOptions.RefreshDropdownCaptions();
             RefreshPanelNavigation();
             RefreshBindings();
+            if (closedDropdown && EventSystem.current != null)
+                EventSystem.current.SetSelectedGameObject(view.Tabs[index].gameObject);
         }
 
         private bool CanEdit => IsOpen && !host.Input.IsSuspended && !host.Input.IsRebinding &&
-            !host.UI.IsOpen(view.UnsavedConfirmation.Id) && !host.Scenes.IsLoading;
+            !existingOptions.IsAnyDropdownOpen && !host.UI.IsOpen(view.UnsavedConfirmation.Id) && !host.Scenes.IsLoading;
 
         private void RequestTab(int delta)
         {
@@ -264,7 +271,7 @@ namespace Lumivale.Start.Game
             }
             catch (Exception failure)
             {
-                SetBindingStatus("Changes could not be fully applied/saved: " + failure.Message);
+                SetBindingStatus("options.status.apply_failed");
                 try
                 {
                     host.Settings.Update(beforeSettings);
@@ -295,7 +302,7 @@ namespace Lumivale.Start.Game
             draft = preferences.Current;
             CaptureAppliedSnapshot();
             RefreshPresentation();
-            SetBindingStatus("Applied and saved.");
+            SetBindingStatus("options.status.applied");
         }
 
         private Dictionary<Guid, string> CaptureEffectiveBindings()
@@ -325,14 +332,12 @@ namespace Lumivale.Start.Game
             left.InvertY == right.InvertY && left.InterfaceScale.Equals(right.InterfaceScale) && left.ShowHints == right.ShowHints;
 
         private static bool SameSettings(SettingsValues left, SettingsValues right) =>
-            left != null && right != null && left.Width == right.Width && left.Height == right.Height &&
-            left.DisplayMode == right.DisplayMode && left.QualityName == right.QualityName &&
-            left.MasterVolume.Equals(right.MasterVolume) && left.MusicVolume.Equals(right.MusicVolume) &&
-            left.SfxVolume.Equals(right.SfxVolume) && left.LanguageCode == right.LanguageCode;
+            left != null && left.ContentEquals(right);
 
         private bool RequestBack()
         {
             if (!IsOpen) return false;
+            if (existingOptions.CloseDropdowns()) return true;
             if (host.Input.IsSuspended || host.Input.IsRebinding || host.Scenes.IsLoading) return true;
             if (host.UI.IsOpen(view.UnsavedConfirmation.Id))
             {
@@ -341,7 +346,7 @@ namespace Lumivale.Start.Game
             }
             if (HasUnsavedChanges)
             {
-                view.ConfirmationStatus.text = "";
+                GameText.Set(view.ConfirmationStatus, string.Empty);
                 host.UI.OpenModal(view.UnsavedConfirmation.Id);
             }
             else host.UI.Close("Options");
@@ -358,7 +363,7 @@ namespace Lumivale.Start.Game
         {
             if (!IsOpen || !host.UI.IsOpen(view.UnsavedConfirmation.Id) || host.Input.IsSuspended) return;
             if (existingOptions.TryApplyDraft()) host.UI.Close("Options");
-            else view.ConfirmationStatus.text = existingOptions.StatusMessage;
+            else GameText.Set(view.ConfirmationStatus, "options.status.apply_failed");
         }
 
         private void ResetProjectDraft()
@@ -368,7 +373,7 @@ namespace Lumivale.Start.Game
             host.Input.ResetBindingOverrides();
             bindingsResetRequested = true;
             RefreshPresentation();
-            SetBindingStatus("Defaults selected.");
+            SetBindingStatus("options.status.defaults");
         }
 
         private void ResetBindings()
@@ -376,7 +381,7 @@ namespace Lumivale.Start.Game
             if (!IsOpen || host.Input.IsRebinding) return;
             host.Input.ResetBindingOverrides();
             bindingsResetRequested = true;
-            SetBindingStatus("Default controls selected.");
+            SetBindingStatus("options.controls.defaults");
         }
 
         private void SensitivityChanged(float value)
@@ -419,8 +424,8 @@ namespace Lumivale.Start.Game
 
         private void RefreshPresentationLabels()
         {
-            view.SensitivityLabel.text = $"Movement sensitivity   {draft.MovementSensitivity:0.00}×";
-            view.ScaleLabel.text = $"Interface scale   {Mathf.RoundToInt(draft.InterfaceScale * 100f)}%";
+            GameText.Set(view.SensitivityLabel, "options.gameplay.sensitivity", draft.MovementSensitivity);
+            GameText.Set(view.ScaleLabel, "options.interface.scale", Mathf.RoundToInt(draft.InterfaceScale * 100f));
         }
 
         private void ApplyPresentation(GamePresentationValues values)
@@ -450,7 +455,9 @@ namespace Lumivale.Start.Game
             {
                 captureRow = row;
                 row.SetCapture(true);
-                SetBindingStatus("Listening for " + row.ControlsPath + " — use Cancel to stop (10 seconds).");
+                SetBindingStatus(row.ControlsPath.StartsWith("<Gamepad>", StringComparison.Ordinal) ?
+                    "options.controls.listening_gamepad" : row.ControlsPath.StartsWith("<Mouse>", StringComparison.Ordinal) ?
+                    "options.controls.listening_mouse" : "options.controls.listening_keyboard");
                 operation = host.Input.BeginRebind(row.ActionPath, row.BindingId, row.ControlsPath, result =>
                 {
                     if (this == null || version != rebindVersion) return;
@@ -461,9 +468,8 @@ namespace Lumivale.Start.Game
                         GamePreferences.IsReservedGameplayControl(host.Input, result.OverridePath);
                     if (reserved) host.Input.ImportBindingOverrides(beforeCapture);
                     RefreshBindings();
-                    SetBindingStatus(reserved ? "That control is reserved for Pause / Saves. The previous binding is unchanged." :
-                        result.IsCanceled ? "Rebinding canceled; the previous binding is unchanged." :
-                        "Binding changed.");
+                    SetBindingStatus(reserved ? "options.controls.reserved" :
+                        result.IsCanceled ? "options.controls.canceled" : "options.controls.changed");
                     if (row != null && row.Button != null && row.Button.IsActive() && EventSystem.current != null)
                         EventSystem.current.SetSelectedGameObject(row.Button.gameObject);
                 });
@@ -472,7 +478,8 @@ namespace Lumivale.Start.Game
             {
                 operation = null;
                 ClearCaptureRow();
-                SetBindingStatus("Could not start rebinding: " + exception.Message);
+                SetBindingStatus("options.controls.failed");
+                Debug.Log("Binding capture failed: " + exception, this);
             }
         }
 
@@ -499,6 +506,12 @@ namespace Lumivale.Start.Game
                 if (row != null) row.Refresh(host.Input);
         }
 
+        private void LocaleChanged(Locale locale)
+        {
+            if (draft != null) RefreshPresentationLabels();
+            RefreshBindings();
+        }
+
         private void OnScreenClosed(string id)
         {
             if (id != "Options") return;
@@ -508,8 +521,10 @@ namespace Lumivale.Start.Game
 
         private void DiscardDraft()
         {
+            if (existingOptions != null) existingOptions.CloseDropdowns(restoreFocus: false);
             CancelCapture();
             var previousBindings = bindingSnapshot;
+            string appliedLanguage = settingsSnapshot?.LanguageCode;
             bindingSnapshot = null;
             effectiveBindingSnapshot = null;
             settingsSnapshot = null;
@@ -517,6 +532,8 @@ namespace Lumivale.Start.Game
             draft = null;
             if (host != null && host.IsReady && preferences != null)
             {
+                if (appliedLanguage != null && host.Localization.IsInitialized)
+                    host.Localization.Preview(appliedLanguage);
                 ApplyPresentation(presentationSnapshot ?? preferences.Current);
                 if (previousBindings != null) _ = RestoreBindingsAsync(host.Input, previousBindings);
             }
@@ -532,18 +549,14 @@ namespace Lumivale.Start.Game
                 input.ImportBindingOverrides(snapshot);
         }
 
-        private void SetBindingStatus(string message)
+        private void SetBindingStatus(string key)
         {
-            if (view?.BindingStatus == null) return;
-            view.BindingStatus.text = message ?? string.Empty;
-            bool visible = !string.IsNullOrWhiteSpace(message);
-            bool changed = view.BindingStatus.gameObject.activeSelf != visible;
-            view.BindingStatus.gameObject.SetActive(visible);
-            if (changed && EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null)
+            if (view?.BindingStatus != null)
             {
-                var row = EventSystem.current.currentSelectedGameObject.GetComponentInParent<GameRebindRow>();
-                if (row != null && row.isActiveAndEnabled) row.OnSelect(null);
+                GameText.Set(view.BindingStatus, string.Empty);
+                view.BindingStatus.gameObject.SetActive(false);
             }
+            if (existingOptions != null) existingOptions.ShowStatus(key);
         }
 
         private void Wire(bool wire)
@@ -594,6 +607,7 @@ namespace Lumivale.Start.Game
         {
             DiscardDraft();
             Wire(false);
+            LocalizationSettings.SelectedLocaleChanged -= LocaleChanged;
             if (host != null && host.Coordinator != null)
             {
                 host.UI.ScreenClosed -= OnScreenClosed;

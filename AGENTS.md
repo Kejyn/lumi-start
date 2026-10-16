@@ -12,6 +12,9 @@
 - Save DTOs belong to Game/Runtime/Save. Save/Load/Delete use Core Persistence; confirm Delete, cancel precommit work on view closure and suppress obsolete application of loaded state.
 - Compose Settings and Audio in Game. Neither Core module references the other; apply validated volumes before music starts. Preserve mixer, clips and provenance under Assets/Game/Audio.
 - Options edits a draft. Preserve Apply/Back/Reset and confirmation before abandoning changes. Keep graphics application and preference saving explicit.
+- Keep player-facing text in the official GameUI String Table Collection under Assets/Game/Localization. Ship only complete locales; keep Localization dependencies and Starter text policy outside lumi-core.
+- Language previews use Unity Localization SelectedLocale through GameLocalizationService; confirmed LanguageCode remains in the existing Settings document. Preserve all preference keys, autonyms and draft discard/reset behavior; await PreviewReady and Bootstrap shutdown in tests.
+- Preserve Input Action tokens in non-Smart prompt entries. Use LocalizeStringEvent for fixed labels and GameText for dynamic text; remove locale subscriptions on disable and verify TMP glyph coverage and text fit without redesigning approved screens.
 - Active integration tests belong to Assets/Game/Tests. Core tests remain in ../lumi-core/Tests and are exposed by the manifest testables entry.
 - Run checks appropriate to the change and report only tests actually executed. Distinguish Editor compilation, virtual-device tests, native Player checks and human hardware/audio validation.
 - Test fixtures own isolated roots, preferences and virtual devices. Restore Editor/graphics settings and build scene lists; await Bootstrap shutdown in repeated Play sessions. Never delete real saves or call PlayerPrefs.DeleteAll to repair a test.

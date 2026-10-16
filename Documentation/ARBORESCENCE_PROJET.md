@@ -32,10 +32,15 @@ Assets/Game/
 │   │   └── GameSessionState.cs           État de session et snapshot à transmettre
 │   ├── Configuration/
 │   │   ├── GamePreferences.cs            Présentation et overrides Gameplay
+│   │   ├── GameGraphicsBackend.cs        Application native sur clones URP et restauration
+│   │   ├── GameGraphicsPresets.cs        Politique Low/Medium/High et calcul de Custom
+│   │   ├── GameLocalizationService.cs    Initialisation et aperçu de la locale officielle
 │   │   └── GameScenePaths.cs             Routes des deux scènes actives
 │   ├── Gameplay/
 │   │   ├── GameSceneController.cs        Navigation, pause, Input et mouvement du cube
 │   │   └── GameplaySnapshotAdapter.cs   Application du snapshot après initialisation
+│   ├── Localization/
+│   │   └── GameText.cs                   Adaptation des textes aux String Tables officielles
 │   ├── Menu/
 │   │   └── GameMenuController.cs         Start, menu, slots, crédits et sortie contrôlée
 │   ├── Save/
@@ -44,8 +49,13 @@ Assets/Game/
 │   └── UI/
 │       ├── GameOptionsController.cs      Brouillon, onglets, confirmations et rebinding
 │       ├── GameSettingsController.cs     Raccordement de la vue aux services Settings/Audio
+│       ├── GameSettingsController.Graphics.cs  Partie graphique du même brouillon
+│       ├── GameSettingsController.Dropdowns.cs Sélecteurs natifs et choix graphiques disponibles
+│       ├── GameGraphicsCategories.cs     Sections empilées Affichage, Image et Détails
+│       ├── GameGraphicsScroll.cs         Visibilité de la sélection dans la liste Graphics
 │       ├── GameChoiceButton.cs           Choix au clic, Submit ou gauche/droite
 │       ├── GameInputPresentation.cs      Prompts selon périphérique et bindings
+│       ├── GameCursorService.cs          Visibilité du curseur pendant la session Bootstrap
 │       ├── GameButtonGroup.cs            Largeur commune d'un groupe de boutons
 │       ├── GameRebindRow.cs              Ligne de binding et focus
 │       ├── GameSaveSlotCard.cs           Présentation d'un slot
@@ -69,15 +79,26 @@ Assets/Game/
 │   ├── Gameplay2D.wav                    Son de gameplay non spatialisé
 │   ├── Gameplay3D.wav                    Son spatialisé du cube
 │   └── README.md                        Provenance, format et droits d'utilisation
+├── Localization/
+│   ├── LocalizationSettings.asset        Initialisation asynchrone, préchargement et fallback
+│   ├── Locales/                          Français (fr) et English (en)
+│   ├── Tables/                           GameUI, Shared Data et les deux String Tables
+│   └── Addressables/                     Configuration et groupes locaux officiels
 └── Tests/
     ├── Editor/                         Préférences et sessions Play répétées
     │   ├── Lumivale.Start.Game.Tests.Editor.asmdef
     │   ├── GamePreferencesTests.cs
+    │   ├── GameGraphicsPresetsTests.cs
+    │   ├── GameLocalizationTests.cs
     │   └── GamePlaySessionTests.cs
     └── PlayMode/                       Intégrations Menu, Options, navigation et saves
         ├── Lumivale.Start.Game.Tests.PlayMode.asmdef
         ├── GameMenuIntegrationTests.cs
         ├── GameOptionsIntegrationTests.cs
+        ├── GameOptionsIntegrationTests.Graphics.cs
+        ├── GameOptionsIntegrationTests.Localization.cs
+        ├── GameOptionsIntegrationTests.Cursor.cs
+        ├── GameOptionsIntegrationTests.Consistency.cs
         ├── GameLifecycleIntegrationTests.cs
         ├── GameBootstrapLifetimeTests.cs
         └── GameSaveAudioIntegrationTests.cs
@@ -87,6 +108,16 @@ Le runtime actif utilise le namespace et l'assembly `Lumivale.Start.Game`.
 Les dossiers séparent les responsabilités sans multiplier les assemblies.
 `GameSettingsController` raccorde les widgets Settings/Audio ; `GameOptionsController`
 gère le parcours Options, les onglets et préférences complémentaires.
+`GameGraphicsCategories` regroupe les sélecteurs du même brouillon en trois sections
+empilées, chacune avec son titre, et conserve une navigation continue entre elles.
+`GameCursorService` dépend d'Input et appartient au Bootstrap persistant : il
+adapte la visibilité au périphérique actif et restaure son état initial à l'arrêt,
+sans modifier le verrouillage ni enregistrer de préférence.
+
+La collection `GameUI` centralise les traductions anglaises/françaises. Les labels
+fixes du Canvas utilisent `LocalizeStringEvent` ; les contrôleurs dynamiques
+passent par `GameText`. `GameLocalizationService` utilise la locale officielle et
+le champ Settings existant, sans dépendance Localization dans le Core.
 
 Les attributs `MovedFrom` rappellent d'anciens types Product ou Phase2/3/4 pour la
 compatibilité. Ils ne nécessitent pas leurs anciennes assemblies. Les noms
@@ -109,6 +140,8 @@ Lumi-start/
 │   ├── ARCHITECTURE.md                  Dépendances, contrats et compatibilité
 │   ├── NEW_GAME_GUIDE.md                 Adapter une copie du Starter à un autre jeu
 │   ├── BUILD_AND_TEST.md                 Commandes, suites et protection des données
+│   ├── GRAPHICS_AND_PERFORMANCE.md       Options moteur, presets, DX11/DX12 et limites
+│   ├── LOCALIZATION.md                   Langues, tables, brouillon, typographie et Addressables
 │   ├── MANUAL_PLAYER_CHECKLIST.md        Validation humaine du Player et du matériel
 │   └── POLISH_MANUAL_CHECKLIST.md        Revue humaine du parcours UI approuvé
 ├── README.md                            Installation et démarrage
@@ -163,6 +196,7 @@ restaurer une version de sources ou pour faire réussir un test.
 | --- | --- |
 | Comprendre le démarrage et les services | Game/Runtime/Bootstrap |
 | Adapter menus, options et prompts | Game/Runtime/Menu et UI |
+| Traduire une chaîne ou ajouter une langue | Game/Localization et Documentation/LOCALIZATION.md |
 | Adapter les données d'une partie | Game/Runtime/Save et GameplaySnapshotAdapter |
 | Modifier les actions d'une copie de jeu | Game/Input/GameControls.inputactions |
 | Adapter le visuel lors d'une mission autorisée | Game/Prefabs ; aucun générateur nécessaire |

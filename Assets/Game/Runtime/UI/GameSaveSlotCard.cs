@@ -1,6 +1,8 @@
 using Lumivale.Core.Persistence;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace Lumivale.Start.Game
 {
@@ -16,6 +18,9 @@ namespace Lumivale.Start.Game
         [SerializeField] private TMP_Text previewCaption;
         [SerializeField] private UnityEngine.UI.Image thumbnail;
         [SerializeField] private GameObject selectedFrame;
+        private int presentedSlot;
+        private SaveSlotInfo presentedInfo;
+        private bool hasPresentation;
 
         public bool IsSelected => selectedFrame != null && selectedFrame.activeSelf;
 
@@ -32,20 +37,41 @@ namespace Lumivale.Start.Game
 
         public void Present(int slotNumber, SaveSlotInfo info)
         {
+            presentedSlot = slotNumber;
+            presentedInfo = info;
+            hasPresentation = true;
+            RefreshPresentation();
+        }
+
+        private void RefreshPresentation()
+        {
+            if (!hasPresentation || !GameText.IsReady) return;
+            SaveSlotInfo info = presentedInfo;
             bool empty = info != null && info.Status == PersistenceStatus.NotFound;
             bool saved = info != null && info.Status == PersistenceStatus.Success;
-            string state = info == null ? "Checking" : empty ? "Empty slot" : saved ?
-                (info.RecoveredFromBackup ? "Recoverable save" : "Saved game") : info.Status.ToString();
-            if (title != null) title.text = "Slot " + slotNumber + "  /  " + state;
-            if (status != null) status.text = info == null ? "Reading save information" : empty ?
-                "Available for a new game" : saved ?
-                (info.RecoveredFromBackup ? "Backup available" : "Manual save") : "Save unavailable";
+            string stateKey = info == null ? "save.checking" : empty ? "save.empty" : saved ?
+                (info.RecoveredFromBackup ? "save.recoverable" : "save.saved") : "persistence.status." + info.Status;
+            if (title != null) title.text = GameText.Text("save.slot_title", presentedSlot, GameText.Text(stateKey));
+            if (status != null) GameText.Set(status, info == null ? "save.reading" : empty ?
+                "save.available" : saved ?
+                (info.RecoveredFromBackup ? "save.backup_available" : "save.manual") : "save.unavailable");
             if (date != null) date.text = info?.Metadata != null ?
-                info.Metadata.SavedAtUtc.ToLocalTime().ToString("dd MMM yyyy  HH:mm") : empty ? "No save data" : "";
-            if (previewCaption != null) previewCaption.text = empty ? "EMPTY" : saved ? "SAVE" : "\u2014";
+                info.Metadata.SavedAtUtc.ToLocalTime().ToString("dd MMM yyyy  HH:mm",
+                    LocalizationSettings.SelectedLocale?.Identifier.CultureInfo ?? System.Globalization.CultureInfo.InvariantCulture) :
+                empty ? GameText.Text("save.no_data") : "";
+            if (previewCaption != null) GameText.Set(previewCaption,
+                empty ? "save.preview.empty" : saved ? "save.preview.saved" : "common.unavailable_mark");
             if (thumbnail != null) thumbnail.color = empty ?
                 new Color(.075f, .075f, .075f, 1f) : new Color(.15f, .15f, .15f, 1f);
         }
+
+        private void LocaleChanged(Locale locale) => RefreshPresentation();
+        private void OnEnable()
+        {
+            LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
+            RefreshPresentation();
+        }
+        private void OnDisable() => LocalizationSettings.SelectedLocaleChanged -= LocaleChanged;
 
         public void SetSelected(bool selected)
         {

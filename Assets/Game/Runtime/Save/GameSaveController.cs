@@ -7,6 +7,8 @@ using Lumivale.Core.Persistence;
 using Lumivale.Core.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace Lumivale.Start.Game
 {
@@ -44,6 +46,8 @@ namespace Lumivale.Start.Game
         private bool busy;
         private GameObject operationSelection;
         private string pendingDeleteSlot;
+        private List<SaveSlotInfo> listedSlots;
+        private bool showingSlots;
 
         public int Counter { get; private set; }
         public string SlotId => "demo-" + (slotIndex + 1);
@@ -127,6 +131,7 @@ namespace Lumivale.Start.Game
                     subscriptions.Add(host.Input.Subscribe("Gameplay/IncrementCounter", _ =>
                     { if (IsReady && !host.Pause.IsPaused && !host.Input.IsSuspended) Increase(); }));
                 host.UI.ScreenClosed += ScreenClosed;
+                LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
                 Wire(true);
                 ready = true;
                 RefreshState();
@@ -172,7 +177,7 @@ namespace Lumivale.Start.Game
         {
             if (!IsOpen || busy) return;
             pendingDeleteSlot = SlotId;
-            deleteText.text = "Delete " + pendingDeleteSlot + " permanently?\nOnly this demonstration slot is affected.";
+            GameText.Set(deleteText, "save.confirm_delete_demo", slotIndex + 1);
             host.UI.OpenModal("DeleteSave");
         }
         private void ConfirmDelete()
@@ -198,8 +203,18 @@ namespace Lumivale.Start.Game
                 UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject : null;
             busy = true; SetControls(false);
             try { await operation(token); }
-            catch (OperationCanceledException) { if (this != null && version == bindVersion) statusText.text = "Operation canceled."; }
-            catch (Exception exception) { if (this != null && version == bindVersion) statusText.text = "Save access failed: " + exception.Message; }
+            catch (OperationCanceledException)
+            {
+                if (this != null && version == bindVersion) SetStatus("save.canceled");
+            }
+            catch (Exception exception)
+            {
+                if (this != null && version == bindVersion)
+                {
+                    SetStatus("save.access_failed");
+                    Debug.LogException(exception, this);
+                }
+            }
             finally
             {
                 if (this != null && version == bindVersion)
@@ -249,27 +264,54 @@ namespace Lumivale.Start.Game
             token.ThrowIfCancellationRequested();
             if (this == null || !IsOpen) return;
             if (!result.IsSuccess) { Show(result.Status, result.Message, false); return; }
-            var text = new System.Text.StringBuilder("Disk slots: ");
-            foreach (var item in result.Data) text.Append(item.SlotId).Append(" ").Append(item.Status).Append("; ");
-            if (result.Data.Count == 0) text.Append("none. Select a slot, then Save.");
-            statusText.text = text.ToString();
+            listedSlots = new List<SaveSlotInfo>(result.Data);
+            showingSlots = true;
+            RefreshSlotList();
         }
 
         private void Show(PersistenceStatus status, string message, bool recovered)
         {
             if (this == null || statusText == null) return;
             LastStatus = status;
-            statusText.text = status == PersistenceStatus.NotFound ? "No save exists in this slot." :
-                status == PersistenceStatus.Success ? (recovered ? "Recovered the previous valid save." : "Operation completed.") :
-                status + ": " + message;
+            SetStatus(status == PersistenceStatus.Success && recovered ? "save.recovered" : "save.result." + status);
+        }
+
+        private void SetStatus(string key)
+        {
+            showingSlots = false;
+            GameText.Set(statusText, key);
+        }
+
+        private void RefreshSlotList()
+        {
+            if (!showingSlots || statusText == null || listedSlots == null || !GameText.IsReady) return;
+            if (listedSlots.Count == 0)
+            {
+                GameText.Set(statusText, "save.slots.none");
+                return;
+            }
+            var entries = new List<string>();
+            foreach (SaveSlotInfo item in listedSlots)
+                entries.Add(GameText.Text("save.slots.entry", item.SlotId,
+                    GameText.Text("persistence.status." + item.Status)));
+            // The composed entries contain translated fragments; rebuild them on locale changes.
+            GameText.Set(statusText, string.Empty);
+            statusText.text = GameText.Text("save.slots.list", string.Join("; ", entries));
+        }
+
+        private void LocaleChanged(Locale locale)
+        {
+            if (!ready) return;
+            RefreshState();
+            RefreshSlotList();
         }
 
         private void RefreshState()
         {
-            if (slotButton == null || stateText == null || player == null) return;
-            slotButton.GetComponentInChildren<TextMeshProUGUI>().text = "Slot " + (slotIndex + 1) + " / 3 (Left / Right)";
+            if (slotButton == null || stateText == null || player == null || !GameText.IsReady) return;
+            slotButton.GetComponentInChildren<TextMeshProUGUI>().text = GameText.Text("save.slot_selector", slotIndex + 1);
             Vector3 p = player.position;
-            stateText.text = $"Counter: {Counter} | Cube: ({p.x:F2}, {p.y:F2}, {p.z:F2})";
+            stateText.text = GameText.Text("save.gameplay_state", Counter, p.x, p.y, p.z);
         }
 
         private void ScreenClosed(string id)
@@ -299,6 +341,9 @@ namespace Lumivale.Start.Game
         private void Release()
         {
             ready = false; pendingOpen = false; busy = false;
+            LocalizationSettings.SelectedLocaleChanged -= LocaleChanged;
+            showingSlots = false;
+            listedSlots = null;
             viewCancellation?.Cancel(); viewCancellation?.Dispose(); viewCancellation = null;
             Wire(false);
             if (host != null && host.Coordinator != null) host.UI.ScreenClosed -= ScreenClosed;

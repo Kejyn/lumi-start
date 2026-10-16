@@ -1,5 +1,40 @@
 # Changelog
 
+## [Unreleased] - Targeted Options adjustments, 2026-10-16
+
+- Replaced the Graphics category tabs with stacked, titled sections in the existing scroll area, keeping the footer fixed.
+- Use the localized Options label for the Pause menu button.
+- Suppress mouse UI hover while gamepad is active, restoring pointer interaction on keyboard/mouse activity.
+
+## [Unreleased] - UI consistency, 2026-10-16
+
+- Grouped the thirteen existing Graphics controls into Display, Image and Details pages, using native TMP dropdowns with explicit selection and capability-filtered values.
+- Unified Language and Graphics captions as localized name/value labels; opening or navigating a list preserves the draft, with Apply/Back/Reset and storage contracts retained.
+- Aligned the Audio slider presentation and selector margins with the existing Interface controls, preserving the shared Options footer.
+- Routed binding feedback through the common Options status area while preserving capture and error diagnostics.
+- Added a Starter-owned cursor service after Input: gamepad activity hides the cursor, keyboard/mouse activity shows it, scene changes retain the policy and shutdown restores the initial visibility without changing cursor locking.
+
+## [Unreleased] - UI corrections, 2026-10-16
+
+- Aligned the No/Yes actions horizontally in the confirmation for returning to the menu and both dialogs for deleting saves, retaining their behavior and styling.
+- Replaced the cycling language control with a native two-step TMP dropdown: opening or navigating the list preserves the draft; selecting previews, Apply saves and Back closes the list first.
+- Hide the entire menu Canvas before controlled Bootstrap shutdown, including Save/Load controls outside registered screens, to prevent a flash during exit.
+
+## [Unreleased] - Localization
+
+- Added official Unity Localization 1.5.13, English/French locales and one complete GameUI String Table Collection for fixed labels, dynamic information, confirmations, saves and input prompts.
+- Reused the existing Interface language selector and Settings LanguageCode with immediate preview, Apply persistence and discard/reset restoration; retained all existing preference keys and gameplay save contracts.
+- Added asynchronous locale initialization, coalesced previews and awaited shutdown alongside the existing Bootstrap; Core remains independent of Unity Localization.
+- Preserved the approved interface and localized dynamic formatting, save dates, control labels and credits; added focused completeness, preference, navigation and lifecycle checks.
+- Documented translation and future locale/font integration; explicitly configured Addressables content construction with future Player builds, without running a Player build in this pass.
+
+## [Unreleased] - Graphics settings
+
+- Extended the existing Options draft with capability-filtered rendering controls and Low/Medium/High presets with derived Custom state.
+- Added a project-owned URP adapter using runtime pipeline clones and restoring native quality, camera and display state on shutdown.
+- Preserved Settings V1 keys, gameplay saves, the approved menu layout and the Windows Auto API list containing DX12 and DX11.
+- Added targeted preference, rendering, input/navigation and lifecycle regressions; documented platform and performance limits.
+
 ## [Unreleased] - Repository maintenance
 
 - Updated installation, architecture and contributor guides for the two independent repositories.

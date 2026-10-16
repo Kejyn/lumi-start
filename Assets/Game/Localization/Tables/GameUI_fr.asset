@@ -1,0 +1,967 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameUI_fr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: d0a8530137c3e6049b672bd389cb5206, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1331593216
+    m_Localized: Compteur +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702080
+    m_Localized: "D\xE9placement"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702081
+    m_Localized: Son 2D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702082
+    m_Localized: Son 3D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702083
+    m_Localized: "{0}  \xB7  {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702084
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702085
+    m_Localized: Alt G.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702086
+    m_Localized: Alt D.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702087
+    m_Localized: "Fl\xE8che bas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702088
+    m_Localized: "Fl\xE8che gauche"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702089
+    m_Localized: "Fl\xE8che droite"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702090
+    m_Localized: "Fl\xE8che haut"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702091
+    m_Localized: "Retour arri\xE8re"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702092
+    m_Localized: Ctrl G.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702093
+    m_Localized: Ctrl D.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702094
+    m_Localized: "Entr\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702095
+    m_Localized: "\xC9chap"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702096
+    m_Localized: Clic G.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702097
+    m_Localized: Clic molette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702098
+    m_Localized: Clic D.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702099
+    m_Localized: MOLETTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702100
+    m_Localized: "Entr\xE9e pav\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702101
+    m_Localized: Maj G.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702102
+    m_Localized: Maj D.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702103
+    m_Localized: Espace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702104
+    m_Localized: Tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702105
+    m_Localized: Manette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702106
+    m_Localized: Clavier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702107
+    m_Localized: Souris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702108
+    m_Localized: "Appuyez\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702109
+    m_Localized: Bas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702110
+    m_Localized: Gauche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702111
+    m_Localized: Droite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702112
+    m_Localized: Haut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702113
+    m_Localized: Assignation indisponible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702114
+    m_Localized: "Non assign\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702115
+    m_Localized: Retour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702116
+    m_Localized: Confirmer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702117
+    m_Localized: "Cr\xE9dits"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702118
+    m_Localized: Supprimer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702119
+    m_Localized: Quitter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702120
+    m_Localized: Titre du jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702121
+    m_Localized: Nouvelle partie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702122
+    m_Localized: Non
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702123
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702124
+    m_Localized: Sauvegardes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702125
+    m_Localized: "Param\xE8tres"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702126
+    m_Localized: "\u2014"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702127
+    m_Localized: Oui
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702128
+    m_Localized: "Clavier : fl\xE8ches / WASD, Entr\xE9e, \xC9chap\nSouris : pointer
+      et cliquer\nManette : croix / stick gauche, A, B, Start"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702129
+    m_Localized: Commandes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702130
+    m_Localized: "Titre du jeu\n\nKejyn \u2014 D\xE9veloppement\n\nConception\nUne
+      base simple pour votre prochain jeu.\n\nGameplay\nRemplacez cette d\xE9mo par
+      vos propres m\xE9caniques.\n\nGraphismes\nAjoutez vos d\xE9cors et vos personnages.\n\nAudio\nRemplacez
+      la musique et les sons de d\xE9monstration.\n\nProduction\nR\xE9alis\xE9 avec
+      lumi-core et lumi-start.\n\nTests\nMerci \xE0 toutes les personnes qui testent
+      le jeu.\n\nRemerciements\nAux personnes qui soutiennent votre projet.\n\nFin
+      des cr\xE9dits de d\xE9monstration"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702131
+    m_Localized: Continuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702132
+    m_Localized: Jouer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702133
+    m_Localized: "Une erreur est survenue \xE0 la fermeture. Consultez le journal."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702134
+    m_Localized: Impossible de quitter. Consultez le journal.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702135
+    m_Localized: Appliquer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702136
+    m_Localized: "Volume g\xE9n\xE9ral : {0} %"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702137
+    m_Localized: 'Musique : {0} %'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398702138
+    m_Localized: 'Effets sonores : {0} %'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896384
+    m_Localized: "R\xE9initialiser les commandes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896385
+    m_Localized: "Modification annul\xE9e. L'affectation pr\xE9c\xE9dente est conserv\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896386
+    m_Localized: "Affectation modifi\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896387
+    m_Localized: "Commandes par d\xE9faut s\xE9lectionn\xE9es."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896388
+    m_Localized: "Impossible de modifier cette commande. R\xE9essayez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896389
+    m_Localized: Utilisez une commande de la manette. Annuler pour quitter (10 secondes).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896390
+    m_Localized: Appuyez sur une touche. Annuler pour quitter (10 secondes).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896391
+    m_Localized: Utilisez une commande de la souris. Annuler pour quitter (10 secondes).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896392
+    m_Localized: "Cette commande est r\xE9serv\xE9e \xE0 la pause ou aux sauvegardes.
+      L'affectation pr\xE9c\xE9dente est conserv\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896393
+    m_Localized: "Les commandes enregistr\xE9es sont illisibles. Les commandes actuelles
+      sont conserv\xE9es."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896394
+    m_Localized: "Plein \xE9cran exclusif"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896395
+    m_Localized: "Plein \xE9cran sans bordure"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896396
+    m_Localized: "Fen\xEAtre agrandie"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896397
+    m_Localized: "Fen\xEAtr\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896398
+    m_Localized: Appliquer enregistre les modifications. Retour permet de les abandonner.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896399
+    m_Localized: "Ajustez les commandes de d\xE9placement"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896400
+    m_Localized: "Inverser le d\xE9placement avant / arri\xE8re"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896401
+    m_Localized: "Sensibilit\xE9   {0:0.00}\xD7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896402
+    m_Localized: "Anticr\xE9nelage : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896403
+    m_Localized: 'Filtrage anisotrope : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896404
+    m_Localized: 'Affichage : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896405
+    m_Localized: 'Limite d''IPS : {0}{1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896406
+    m_Localized: "Qualit\xE9 globale : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896407
+    m_Localized: "Qualit\xE9 des LOD : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896408
+    m_Localized: 'Post-traitement : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896409
+    m_Localized: "\xC9chelle de rendu : {0} %"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896410
+    m_Localized: "R\xE9solution : {0} x {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896411
+    m_Localized: 'Distance des ombres : {0:0} m'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896412
+    m_Localized: "Qualit\xE9 des ombres : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896413
+    m_Localized: "Qualit\xE9 des textures : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896414
+    m_Localized: 'Synchronisation verticale : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896415
+    m_Localized: 'Haut / Bas : naviguer | Gauche / Droite : modifier | Appliquer
+      : enregistrer | Retour : annuler'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896416
+    m_Localized: "Ajustez l\u2019\xE9chelle de l\u2019interface et les aides"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896417
+    m_Localized: Afficher les aides de navigation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896418
+    m_Localized: 'Langue : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896419
+    m_Localized: "\xC9chelle de l'interface   {0} %"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896420
+    m_Localized: "Personnalis\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896421
+    m_Localized: "\xC9lev\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896422
+    m_Localized: Faible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896423
+    m_Localized: Moyenne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896424
+    m_Localized: "D\xE9sactiv\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896425
+    m_Localized: "Valeurs par d\xE9faut"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896426
+    m_Localized: "Modifications appliqu\xE9es et enregistr\xE9es."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896427
+    m_Localized: "Impossible d'enregistrer les modifications. R\xE9essayez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896428
+    m_Localized: "Valeurs par d\xE9faut s\xE9lectionn\xE9es."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896429
+    m_Localized: "Valeurs par d\xE9faut s\xE9lectionn\xE9es. Appliquez-les pour les
+      enregistrer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896430
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896431
+    m_Localized: Commandes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896432
+    m_Localized: Gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896433
+    m_Localized: Graphismes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896434
+    m_Localized: Interface
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896435
+    m_Localized: Enregistrer avant de quitter ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896436
+    m_Localized: "Forc\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896437
+    m_Localized: "D\xE9sactiv\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896438
+    m_Localized: "Activ\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896439
+    m_Localized: Selon la texture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896440
+    m_Localized: "Illimit\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896441
+    m_Localized: ' (VSync)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896442
+    m_Localized: Jeu en pause.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896443
+    m_Localized: Reprendre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896444
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896445
+    m_Localized: "Sauvegarde endommag\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896446
+    m_Localized: Sauvegarde incompatible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896447
+    m_Localized: "Donn\xE9es invalides"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896448
+    m_Localized: Vide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896449
+    m_Localized: Indisponible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896450
+    m_Localized: "Arr\xEAt en cours"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896451
+    m_Localized: Stockage inaccessible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896452
+    m_Localized: "Sauvegard\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896453
+    m_Localized: "D\xE9placement {Gameplay/Move}   Compteur {Gameplay/IncrementCounter}  
+      Pause {Common/Pause}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896454
+    m_Localized: 'Sauvegarder / Charger [{Common/OpenSaves}]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896455
+    m_Localized: '[{UI/NextOptionsTab}]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896456
+    m_Localized: '[E]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896457
+    m_Localized: '[{UI/PreviousOptionsTab}]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896458
+    m_Localized: '[A]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896459
+    m_Localized: '[{Common/SaveSlotAction}] Supprimer'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896460
+    m_Localized: '[{Common/SaveSlotAction}] Nouvelle partie'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896461
+    m_Localized: Appuyez sur {UI/StartContinue} pour continuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896462
+    m_Localized: Appuyez sur Espace pour continuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896463
+    m_Localized: "La progression non sauvegard\xE9e sera perdue."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896464
+    m_Localized: Quitter le jeu ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896465
+    m_Localized: "La progression non sauvegard\xE9e sera perdue."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896466
+    m_Localized: Revenir au menu principal ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896467
+    m_Localized: "Acc\xE8s aux sauvegardes impossible. V\xE9rifiez les autorisations
+      et l\u2019espace disponible."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896468
+    m_Localized: Libre pour une nouvelle partie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896469
+    m_Localized: "Retour \xE0 la pause"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896470
+    m_Localized: Copie de secours disponible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896471
+    m_Localized: "Op\xE9ration annul\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896472
+    m_Localized: "V\xE9rification\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896473
+    m_Localized: "Supprimer d\xE9finitivement l\u2019emplacement {0} ?\nSeul cet
+      emplacement de d\xE9monstration est concern\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896474
+    m_Localized: "Supprimer l\u2019emplacement {0} ?\nCette action est d\xE9finitive."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896475
+    m_Localized: Compteur -
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896476
+    m_Localized: Compteur +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896477
+    m_Localized: "Supprimer d\xE9finitivement"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896478
+    m_Localized: Supprimer cet emplacement...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896479
+    m_Localized: Confirmer la suppression
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896480
+    m_Localized: "Sauvegarde supprim\xE9e. Cet emplacement est libre pour une nouvelle
+      partie."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896481
+    m_Localized: Vide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896482
+    m_Localized: 'Compteur : {0} | Cube : ({1:F2}, {2:F2}, {3:F2})'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896483
+    m_Localized: 'Trois emplacements | Retour : Pause | Pas de sauvegarde automatique'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896484
+    m_Localized: Charger le cube et le compteur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896485
+    m_Localized: Sauvegarde manuelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896486
+    m_Localized: "Une nouvelle partie n\xE9cessite un emplacement libre. Aucune sauvegarde
+      n\u2019est remplac\xE9e automatiquement."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896487
+    m_Localized: Aucune sauvegarde
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896488
+    m_Localized: Aucun emplacement libre. Chargez une partie ou supprimez une sauvegarde.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896489
+    m_Localized: VIDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896490
+    m_Localized: SAUVEGARDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896491
+    m_Localized: Lecture des informations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896492
+    m_Localized: "Sauvegarde r\xE9cup\xE9rable"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896493
+    m_Localized: "La sauvegarde valide pr\xE9c\xE9dente a \xE9t\xE9 r\xE9cup\xE9r\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896494
+    m_Localized: "La sauvegarde est endommag\xE9e. Une copie de secours peut \xEAtre
+      disponible. Supprimez-la uniquement pour la remplacer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896495
+    m_Localized: "Le format ou la version de cette sauvegarde n\u2019est pas compatible."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896496
+    m_Localized: "Les donn\xE9es sont invalides. La sauvegarde pr\xE9c\xE9dente a
+      \xE9t\xE9 conserv\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896497
+    m_Localized: Cet emplacement ne contient aucune sauvegarde.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896498
+    m_Localized: "Les sauvegardes ne sont pas encore disponibles. R\xE9essayez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896499
+    m_Localized: "Le jeu se ferme. Aucune nouvelle op\xE9ration de sauvegarde n\u2019est
+      possible."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896500
+    m_Localized: "Stockage des sauvegardes inaccessible. V\xE9rifiez les autorisations
+      et l\u2019espace disponible."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896501
+    m_Localized: "Op\xE9ration termin\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896502
+    m_Localized: Sauvegarder le cube et le compteur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896503
+    m_Localized: "Partie sauvegard\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896504
+    m_Localized: Emplacement {0} / 3 (Gauche / Droite)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896505
+    m_Localized: Emplacement {0}  /  {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896506
+    m_Localized: '{0} : {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896507
+    m_Localized: 'Sauvegardes : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896508
+    m_Localized: Aucune sauvegarde. Choisissez un emplacement, puis sauvegardez.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896509
+    m_Localized: Sauvegarde indisponible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896510
+    m_Localized: "Cette action n\xE9cessite votre confirmation."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896511
+    m_Localized: Supprimer cette sauvegarde ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896512
+    m_Localized: Supprimer la sauvegarde
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1402896513
+    m_Localized: Sauvegardes manuelles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556447727616
+    m_Localized: Verr. maj.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699136
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699137
+    m_Localized: Suppr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699138
+    m_Localized: CROIX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699139
+    m_Localized: CROIX BAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699140
+    m_Localized: CROIX GAUCHE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699141
+    m_Localized: CROIX DROITE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699142
+    m_Localized: CROIX HAUT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699143
+    m_Localized: CROIX X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699144
+    m_Localized: CROIX Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699145
+    m_Localized: Fin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699146
+    m_Localized: "D\xE9but"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699147
+    m_Localized: Inser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699148
+    m_Localized: STICK G.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699149
+    m_Localized: STICK G. bas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699150
+    m_Localized: STICK G. gauche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699151
+    m_Localized: STICK G. droite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699152
+    m_Localized: STICK G. haut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699153
+    m_Localized: STICK G. X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699154
+    m_Localized: STICK G. Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699155
+    m_Localized: Windows G.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699156
+    m_Localized: Windows D.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699157
+    m_Localized: Verr. num.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699158
+    m_Localized: Page suiv.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699159
+    m_Localized: "Page pr\xE9c."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699160
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699161
+    m_Localized: "Impr. \xE9cran"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699162
+    m_Localized: STICK D.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699163
+    m_Localized: STICK D. bas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699164
+    m_Localized: STICK D. gauche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699165
+    m_Localized: STICK D. droite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699166
+    m_Localized: STICK D. haut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699167
+    m_Localized: STICK D. X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699168
+    m_Localized: STICK D. Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 556468699169
+    m_Localized: "Arr\xEAt d\xE9fil."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196172087984128
+    m_Localized: Langue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172733857792
+    m_Localized: Affichage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189440
+    m_Localized: Image
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189441
+    m_Localized: "D\xE9tails"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189442
+    m_Localized: '{0:0.###} %'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272172784189443
+    m_Localized: '{0:0.###} m'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

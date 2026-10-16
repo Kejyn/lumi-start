@@ -63,6 +63,9 @@ namespace Lumivale.Start.GameTests
             gamepad = InputSystem.AddDevice<Gamepad>("Product Options Virtual Gamepad");
             CreateHost();
             yield return Wait(host.Ready);
+            // Keep unrelated presentation assertions independent of the developer OS language.
+            AppliedLanguage("en");
+            yield return Wait(host.Localization.PreviewReady);
             RestrictDevices();
             yield return Wait(host.Scenes.LoadAsync(new SceneLoadRequest(GameScenePaths.MenuPath)));
             yield return ReadyMenu();
@@ -116,8 +119,8 @@ namespace Lumivale.Start.GameTests
             yield return Pad(GamepadButton.South);
             Assert.That(options.CurrentTab, Is.EqualTo(1));
             Assert.That(options.View.BindingRows.All(row => row.ActionPath.StartsWith("Gameplay/", StringComparison.Ordinal)), Is.True);
-            Assert.That(SettingsController().LanguageButton.gameObject.activeInHierarchy, Is.False,
-                "The legacy language preference remains internal; this pass does not promise localized content.");
+            Assert.That(SettingsController().LanguageButton.gameObject.activeSelf, Is.True);
+            Assert.That(SettingsController().LanguageButton.transform.IsChildOf(options.View.Panels[4].transform), Is.True);
             yield return Pad(GamepadButton.East);
             Assert.That(SettingsController().IsOpen, Is.False);
             Assert.That(EventSystem.current.currentSelectedGameObject, Is.EqualTo(SettingsController().MenuOptionsButton.gameObject));
@@ -305,7 +308,7 @@ namespace Lumivale.Start.GameTests
             string previous = BindingPath(row);
             yield return StartCapture(row); yield return Pad(GamepadButton.Start); yield return FinishCapture();
             Assert.That(BindingPath(row), Is.EqualTo(previous));
-            Assert.That(Options().View.BindingStatus.text, Does.Contain("reserved"));
+            Assert.That(SettingsController().StatusMessage, Is.EqualTo(GameText.Text("options.controls.reserved")));
             Assert.That(Options().IsOpen, Is.True);
             Assert.That(host.Pause.IsPaused, Is.True);
             Assert.That(Time.timeScale, Is.Zero);
@@ -326,7 +329,7 @@ namespace Lumivale.Start.GameTests
             var row = Row("Gameplay/IncrementCounter", "<Keyboard>/*");
             yield return StartCapture(row); yield return Press(Key.Tab); yield return FinishCapture();
             Assert.That(BindingPath(row), Is.EqualTo("<Keyboard>/c"));
-            Assert.That(Options().View.BindingStatus.text, Does.Contain("reserved"));
+            Assert.That(SettingsController().StatusMessage, Is.EqualTo(GameText.Text("options.controls.reserved")));
             Assert.That(Options().IsOpen, Is.True);
             Assert.That(host.UI.ModalCount, Is.EqualTo(2));
             Assert.That(Saves().IsOpen, Is.False);
@@ -540,8 +543,8 @@ namespace Lumivale.Start.GameTests
                 yield return Click(options.View.SaveChanges);
                 Assert.That(options.IsOpen, Is.True);
                 Assert.That(host.UI.IsOpen(options.View.UnsavedConfirmation.Id), Is.True);
-                Assert.That(options.View.ConfirmationStatus.text, Does.Contain("Controlled preference save failure"));
-                Assert.That(SettingsController().StatusMessage, Does.Not.Contain("Applied and saved"));
+                Assert.That(options.View.ConfirmationStatus.text, Is.EqualTo(GameText.Text("options.status.apply_failed")));
+                Assert.That(SettingsController().StatusMessage, Is.Not.EqualTo(GameText.Text("options.status.applied")));
                 Assert.That(options.HasUnsavedChanges, Is.True);
                 Assert.That(PlayerPrefs.HasKey(key + GamePreferences.PresentationSuffix), Is.False);
             }
