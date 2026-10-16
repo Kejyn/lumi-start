@@ -122,11 +122,13 @@ namespace Lumivale.Start.Game
 
             var graphics = new GameGraphicsBackend();
             var capabilities = graphics.GetCapabilities();
+            // Player first-run defaults ignore Unity's remembered window size. Stored settings still take priority.
+            var nativeResolution = Screen.currentResolution;
             var defaults = GameGraphicsPresets.Apply(new SettingsValues
             {
-                Width = capabilities.CurrentResolution.Width,
-                Height = capabilities.CurrentResolution.Height,
-                DisplayMode = capabilities.CurrentMode,
+                Width = Application.isEditor ? capabilities.CurrentResolution.Width : nativeResolution.width,
+                Height = Application.isEditor ? capabilities.CurrentResolution.Height : nativeResolution.height,
+                DisplayMode = Application.isEditor ? capabilities.CurrentMode : FullScreenMode.FullScreenWindow,
                 QualityName = capabilities.CurrentQualityName,
                 MasterVolume = 1f, MusicVolume = 0.5f, SfxVolume = 0.7f,
                 LanguageCode = GameLocalizationService.DetectLanguage(Application.systemLanguage)
